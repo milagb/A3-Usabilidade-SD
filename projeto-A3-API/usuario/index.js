@@ -1,20 +1,38 @@
 const express = require('express')
 const axios = require('axios')
 const app = express()
+const bodyParser = require('body-parser');
 
-app.use(express.json())
+app.use(bodyParser.json());
+// app.use(express.json())
 
 const usuarios={}
 let organizer = 0
 
-app.post('/usuario',(req, res) =>{
-organizer++
+app.post('/',(req, res) =>{
+try {
 
-const{texto} = req.body
-usuarios[organizer] = {organizer, texto}
-// await axios.post("http://localhost:")
+    organizer++
+
+    const{ nome } = req.body
+    const{email} = req.body
+    const{telefone} = req.body
+    const{cpf} = req.body
+    const{crm} = req.body
+    const{senha} = req.body
+
+
+    usuarios[organizer] = {organizer, nome}
+    //(inserir) consulta de consultas - usuario verifica consulta marcada.
+    res.status(201).send(usuarios[organizer])
+} catch (error) {
+   console.log(error) 
+}
 })
 
+app.get('/'), (req,res) =>{
+    res.send(usuarios)
+}
 
 
 try {
