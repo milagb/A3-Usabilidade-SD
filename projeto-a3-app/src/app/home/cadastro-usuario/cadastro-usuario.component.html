@@ -5,65 +5,81 @@
 
 <form class="form mt-4" [formGroup]="cadastroUsuarioForm" (submit)="cadastrar()">
 
-<div class="form-group">
-  <input placeholder="E-mail" class="form-control" formControlName="email"/>
-
-  <app-mensagem
-  mensagem="E-mail obrigatório!"
-  *ngIf="
-    cadastroUsuarioForm.get('email')?.errors?.['required'] &&
-    cadastroUsuarioForm.get('email')?.touched
-    "
-  ></app-mensagem>
-  <app-mensagem
-    mensagem="E-mail no formato incorreto!"
+<div class="container">
+  <div class="row align-items-end">
+    <input placeholder="E-mail" class="form-control" formControlName="email"/>
+  
+    <app-mensagem
+    mensagem="E-mail obrigatório!"
     *ngIf="
-    cadastroUsuarioForm.get('email')?.errors?.['email'] &&
-    cadastroUsuarioForm.get('email')?.touched
-    "
-  ></app-mensagem>
-
+      cadastroUsuarioForm.get('email')?.errors?.['required'] &&
+      cadastroUsuarioForm.get('email')?.touched
+      "
+    ></app-mensagem>
+    <app-mensagem
+      mensagem="E-mail no formato incorreto!"
+      *ngIf="
+      cadastroUsuarioForm.get('email')?.errors?.['email'] &&
+      cadastroUsuarioForm.get('email')?.touched
+      "
+    ></app-mensagem>
+  
+  </div>
 </div>
 
-<div class="form-group">
-  <input placeholder="Nome Completo" class="form-control" formControlName="fullName"/>
-
-  <app-mensagem
-    mensagem="Nome incorreto!"
-    *ngIf="
-    cadastroUsuarioForm.get('fullName')?.errors &&
-    cadastroUsuarioForm.get('fullName')?.touched
-    "
-  ></app-mensagem>
-
+<div class="container">
+  <div class="row align-items-end">
+    <input placeholder="Nome Completo" class="form-control" formControlName="fullName"/>
+  
+    <app-mensagem
+      mensagem="Nome incorreto!"
+      *ngIf="
+      cadastroUsuarioForm.get('fullName')?.errors &&
+      cadastroUsuarioForm.get('fullName')?.touched
+      "
+    ></app-mensagem>
+  
+  </div>
 </div>
 
-<div class="form-group">
-  <input placeholder="Usuário" class="form-control" formControlName="userName"/>
-
-  <app-mensagem
-    mensagem="Apenas caracteres minúsculos!"
-    *ngIf="
-    cadastroUsuarioForm.get('userName')?.errors?.['minusculo'] &&
-    cadastroUsuarioForm.get('userName')?.touched
-    "
-  ></app-mensagem>
-
-  <app-mensagem
-    mensagem="Usuário já existe!"
-    *ngIf="
-    cadastroUsuarioForm.get('userName')?.errors?.['usuarioExiste']
-    "
-  ></app-mensagem>
-
+<div class="container">
+  <div class="row align-items-end">
+    <input placeholder="Usuário" class="form-control" formControlName="userName"/>
+  
+    <app-mensagem
+      mensagem="Apenas caracteres minúsculos!"
+      *ngIf="
+      cadastroUsuarioForm.get('userName')?.errors?.['minusculo'] &&
+      cadastroUsuarioForm.get('userName')?.touched
+      "
+    ></app-mensagem>
+  
+    <app-mensagem
+      mensagem="Usuário já existe!"
+      *ngIf="
+      cadastroUsuarioForm.get('userName')?.errors?.['usuarioExiste']
+      "
+    ></app-mensagem>
+  
+  </div>
 </div>
 
-<div class="col-xs-2">
-  <input type="password" placeholder="Senha" class="form-control" formControlName="password"/>
+<div class="container">
+  <div class="row align-items-end">
+    <input type="password" placeholder="Senha" class="form-control" formControlName="password"/>
+  </div>
 </div>
 
-<button type="button" class="btn btn-success">Cadastro</button>
+<div class="container">
+  <button type="button" class="btn btn-success">Cadastro</button>
+</div>
+
 
 </form>
 
-<p>Já é um usuário? <a [routerLink]="['']">Faça Login!</a></p>
+<div class="container">
+  <div class="row align-items-end">
+    <p>Já é um usuário? <a [routerLink]="['']">Faça Login!</a></p>
+  </div>
+</div>
+
