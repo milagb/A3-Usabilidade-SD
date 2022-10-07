@@ -11,7 +11,7 @@ app.post('/usuario',(req, res) =>{
 organizer++
 
 const{texto} = req.body
-usuarios[organizer] = {contador, texto}
+usuarios[organizer] = {organizer, texto}
 // await axios.post("http://localhost:")
 })
 
