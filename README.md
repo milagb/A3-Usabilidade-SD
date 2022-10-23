@@ -13,3 +13,29 @@ Nathan Vinicius Vital Santos RA: 820126079
 
 Victor Sousa de Carvalho RA: 820266034
 
+# Back-end Shopping List
+#CP = Chave Primária
+
+# Login
+    -Usuário
+        - Consulta (Tipos de usuário, informações de acesso)
+        - Cadastro (CPF, Nome, E-mail, Senha, Telefone)
+        - Cadastro Médico/ Enfermeira ( CRM (CP), Nome, Senha, telefone, E-mail)
+    -Token (Cookie de acesso, feito em SHA256)
+
+# Agendamento 
+
+# Banco de dados
+
+MongoExpress: p 8081:8081
+# 
+
+# 
+
+# 
+
+# 
+
+# 
+
+# 
