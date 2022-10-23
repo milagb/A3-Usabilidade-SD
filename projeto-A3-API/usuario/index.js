@@ -31,14 +31,8 @@ try {
 })
 
 app.get('/', (req,res) =>{
-res.send(usuarios)
+    res.send(usuarios)
 })
-
-
-
-
-
-
 
 
 try {
