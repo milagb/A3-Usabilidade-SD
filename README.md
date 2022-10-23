@@ -25,8 +25,9 @@ Victor Sousa de Carvalho RA: 820266034
 
 # Agendamento 
 
-# 
+# Banco de dados
 
+MongoExpress: p 8081:8081
 # 
 
 # 

@@ -22,7 +22,7 @@ try {
     const{senha} = req.body
 
 
-    usuarios[organizer] = {organizer, nome}
+    usuarios[organizer] = {organizer, nome, email, telefone, cpf, senha, crm}
     //(inserir) consulta de consultas - usuario verifica consulta marcada.
     res.status(201).send(usuarios[organizer])
 } catch (error) {
