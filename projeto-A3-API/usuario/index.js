@@ -30,9 +30,15 @@ try {
 }
 })
 
-app.get('/'), (req,res) =>{
-    res.send(usuarios)
-}
+app.get('/', (req,res) =>{
+res.send(usuarios)
+})
+
+
+
+
+
+
 
 
 try {

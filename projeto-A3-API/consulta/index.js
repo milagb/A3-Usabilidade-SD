@@ -19,8 +19,6 @@ catch(err){
 }
 })
 
-
-
 try {
     app.listen(5000, () => console.log('Usuário. Porta 5000'))
 } catch (error) {
