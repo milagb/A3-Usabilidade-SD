@@ -1,1 +1,50 @@
-<p>tela-inicial works!</p>
+<mat-toolbar>
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    
+    Clínica Alpha
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav">
+
+        <img src="https://i.pinimg.com/originals/64/34/d7/6434d72ce9e16251c4f41f4e5a146567.png" alt="" class="avatar mat-elevation-z8">
+
+        <h4 class="name">Pamela Martini</h4>
+        <p class="designation">Médica Pediatra</p>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <mat-icon>home</mat-icon>
+            <span> Home</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>person</mat-icon>
+            <span> Profile</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>library_books</mat-icon>
+            <span> Schedule</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <mat-icon>help</mat-icon>
+            <span> Help</span>
+        </button>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z4">
+            Main content
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
