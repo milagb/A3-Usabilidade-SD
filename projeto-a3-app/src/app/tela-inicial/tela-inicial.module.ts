@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { TelaInicialRoutingModule } from './tela-inicial-routing.module';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -11,7 +16,12 @@ import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
   ],
   imports: [
     CommonModule,
-    TelaInicialRoutingModule
+    TelaInicialRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
   ]
 })
 export class TelaInicialModule { }
