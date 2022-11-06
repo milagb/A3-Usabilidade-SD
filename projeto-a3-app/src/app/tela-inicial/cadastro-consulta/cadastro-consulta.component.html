@@ -1,0 +1,110 @@
+
+    <form
+    #clienteForm="">
+
+    <mat-form-field class="width-100">
+      <mat-label>Agenda</mat-label>
+      <mat-select>
+          <mat-option *ngFor="let agenda of agendas" [value]="agenda.value">
+          {{agenda.viewValue}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <mat-label>Especialidade</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <mat-label>Médico</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="example-container">
+      <mat-form-field class="width-50">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <mat-label>Horário</mat-label>
+        <mat-select>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="width-100">
+      <input
+        type="text"
+        matInput
+        placeholder="Paciente"
+        name="Paciente"
+        ngModel
+        required
+        minlength="2"/>
+      <mat-error>Digite um nome válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="Celular"
+        name="Celular"
+        ngModel
+        required
+        minlength="11"/>
+      <mat-error>Digite um celular válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Telefone"
+        ngModel
+        name="Telefone"
+        required />
+      <mat-error>Digite um Telefone válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="CPF"
+        name="CPF"
+        ngModel
+        required
+        minlength="11"/>
+      <mat-error>Digite um cpf válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Observações"
+        name="Observações"
+        ngModel
+        required />
+    </mat-form-field>
+
+    <section class="example-section">
+      <mat-checkbox class="mat-chk">Retorno</mat-checkbox>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <button mat-raised-button class="btn-agn">AGENDAR</button>
+  </form>
+
