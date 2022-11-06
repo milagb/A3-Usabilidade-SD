@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AutenticacaoService } from 'src/app/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  usuario='';
+  senha='';
+
+  constructor(private authService: AutenticacaoService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  login(){
+    this.router.navigate(['tela-inicial']);
   }
 
 }
