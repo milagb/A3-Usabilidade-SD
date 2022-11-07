@@ -1,15 +1,21 @@
 .divChart{
-   display: block;
-   margin-left: 120px;
-   width: 77%;
+   margin-left: 170px;
+   width: 75%;
    height: 20%;
+   justify-content: center;
+   display: flex;
 }
 
-.lbl-agn {
-    color: black;
-    font-size: large;
-    margin: 20px;
-}
+.lblGer {
+    color: white;
+    font-size: medium;
+    margin: 8px 0px 0px 15px;
+  }
+  
+  .table-title{
+    background-color: rgb(9, 22, 94);
+    height: 60px;
+  }
 
 .example-card {
     width: 100%;
@@ -33,10 +39,16 @@
 
 .linha{
     width: 100%;
-    margin-left: 120px;
+    margin-left: 50px;
 }
   
   .example-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     background-color: lightgray;
   }
+
+.width-50{width: 48%; margin-top: 12px; color: white;}
+.ml-1{margin-left: 1%;}
+.ml-2{margin-left: 2%;}
+.width-100{width: 100%;}
+.width-25{width: 25%;}

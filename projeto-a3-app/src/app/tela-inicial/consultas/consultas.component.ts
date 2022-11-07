@@ -24,11 +24,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-medicos',
-  templateUrl: './medicos.component.html',
-  styleUrls: ['./medicos.component.scss']
+  selector: 'app-consultas',
+  templateUrl: './consultas.component.html',
+  styleUrls: ['./consultas.component.scss']
 })
-export class MedicosComponent implements OnInit {
+export class ConsultasComponent implements OnInit {
 
   displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'sexo', 'actions'];
   dataSource = ELEMENT_DATA;

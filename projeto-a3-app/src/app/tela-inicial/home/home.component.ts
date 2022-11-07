@@ -15,10 +15,10 @@ export class HomeComponent implements OnInit {
     var myChart = new Chart("myChart", {
       type: 'line',
       data: {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
           datasets: [{
               label: 'Consultas por Mês',
-              data: [12, 19, 3, 5, 2, 3],
+              data: [12, 19, 3, 5, 2, 3, 8, 6, 9, 20, 15],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
