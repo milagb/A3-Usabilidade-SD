@@ -1,9 +1,7 @@
-.content{
-    margin: 16px;
-    margin-left: 32px;
+.container{
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-top: 100px;
 }
 
 button {
@@ -33,7 +31,5 @@ button {
 .lbl-agn {
     color: black;
     font-size: large;
-    position: absolute;
-    margin-top: -10%;
-    margin-left: -18%;
+    margin: 20px;
 }
