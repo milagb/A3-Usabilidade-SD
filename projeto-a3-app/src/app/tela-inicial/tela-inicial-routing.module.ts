@@ -8,6 +8,10 @@ import { AddMedicosComponent } from "./medicos/add-medicos/add-medicos.component
 import { ViewMedicosComponent } from "./medicos/view-medicos/view-medicos.component";
 import { EditMedicosComponent } from "./medicos/edit-medicos/edit-medicos.component";
 import { AgendamentosComponent } from "./agendamentos/agendamentos.component";
+import { PacientesComponent } from './pacientes/pacientes.component';
+import { AddPacientesComponent } from './pacientes/add-pacientes/add-pacientes.component';
+import { ViewPacientesComponent } from './pacientes/view-pacientes/view-pacientes.component';
+import { EditPacientesComponent } from './pacientes/edit-pacientes/edit-pacientes.component';
 
 const routes: Routes = [{
   path: '',
@@ -40,6 +44,22 @@ const routes: Routes = [{
     {
       path: 'edit-medicos',
       component: EditMedicosComponent
+    },
+    {
+      path: 'pacientes',
+      component: PacientesComponent
+    },
+    {
+      path: 'add-pacientes',
+      component: AddPacientesComponent
+    },
+    {
+      path: 'view-pacientes',
+      component: ViewPacientesComponent
+    },
+    {
+      path: 'edit-pacientes',
+      component: EditPacientesComponent
     },
   ]
 }];

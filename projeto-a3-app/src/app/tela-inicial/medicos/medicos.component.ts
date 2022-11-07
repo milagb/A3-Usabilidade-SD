@@ -16,6 +16,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {crm: 3, nome: 'Lilith', sobrenome: 'Silva', especialiidade: 'Clinico Geral', email: '@gmail.com', fone: '11 87892', sexo: 'F'},
   {crm: 4, nome: 'Berry', sobrenome: 'Alen', especialiidade: 'Oftalmologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
   {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
+  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
+  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
+  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
+  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
+  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
 ];
 
 @Component({
