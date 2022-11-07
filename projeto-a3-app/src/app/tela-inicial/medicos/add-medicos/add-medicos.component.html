@@ -1,0 +1,107 @@
+<label class="lbl-agn"><b>MÉDICOS</b></label>
+
+<div class="content">
+  <div class="table-title">
+    <div class="row">
+      <div class="width-50">
+          <label class="lblGer"><b>CADASTRO</b></label>
+        </div>
+      <div class="width-50 ml-2">
+          <button mat-raised-button class="btn" routerLink="/medicos">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>  
+    </div>
+  </div>
+    <form #clienteForm="" class="mat-elevation-z8">
+
+    <div class="div-input">
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="Nome"
+        name="Nome"
+        ngModel
+        required
+        minlength="2"/>
+      <mat-error>Digite um nome válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+        <input
+          type="text"
+          matInput
+          placeholder="Sobrenome"
+          name="Sobrenome"
+          ngModel
+          required
+          minlength="2"/>
+        <mat-error>Digite um Sobrenome válido</mat-error>
+      </mat-form-field>
+
+    <mat-form-field class="width-50">
+        <mat-label>Especialidade</mat-label>
+        <mat-select>
+          <mat-option value="option">Pediatra</mat-option>
+        </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="width-50 ml-2">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="Celular"
+        name="Celular"
+        ngModel
+        required
+        minlength="11"/>
+      <mat-error>Digite um celular válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Telefone"
+        ngModel
+        name="Telefone"
+        required />
+      <mat-error>Digite um Telefone válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="CRM"
+        name="CRM"
+        ngModel
+        required
+        minlength="11"/>
+      <mat-error>Digite um cpf válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Email"
+        name="Email"
+        ngModel
+        required />
+    </mat-form-field>
+    </div>
+    <button mat-raised-button class="btn-agn">CONFIRMAR</button>
+  </form>
+</div>
+
