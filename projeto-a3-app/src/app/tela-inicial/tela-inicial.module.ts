@@ -6,6 +6,9 @@ import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
 import { CadastroConsultaComponent } from './cadastro-consulta/cadastro-consulta.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from '../componentes/nav/nav.component';
+import { AddMedicosComponent } from './medicos/add-medicos/add-medicos.component';
+import { EditMedicosComponent } from './medicos/edit-medicos/edit-medicos.component';
+import { ViewMedicosComponent } from './medicos/view-medicos/view-medicos.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,6 +22,11 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule  } from "@angular/material/core";
+import { MatTableModule  } from "@angular/material/table";
+import { MatPaginatorModule  } from "@angular/material/paginator";
+import { MatSortModule  } from "@angular/material/sort";
+import { MedicosComponent } from './medicos/medicos.component';
+import { AgendamentosComponent } from './agendamentos/agendamentos.component';
 
 
 
@@ -27,7 +35,12 @@ import { MatNativeDateModule  } from "@angular/material/core";
     TelaInicialComponent,
     CadastroConsultaComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    AddMedicosComponent,
+    EditMedicosComponent,
+    ViewMedicosComponent,
+    MedicosComponent,
+    AgendamentosComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +57,9 @@ import { MatNativeDateModule  } from "@angular/material/core";
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class TelaInicialModule { }

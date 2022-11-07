@@ -1,8 +1,21 @@
 <label class="lbl-agn"><b>AGENDAMENTO</b></label>
 
-<div class="container">
-    <form #clienteForm="">
+<div class="content">
+  <div class="table-title">
+    <div class="row">
+      <div class="width-50">
+          <label class="lblGer"><b>CADASTRO</b></label>
+        </div>
+      <div class="width-50 ml-2">
+          <button mat-raised-button class="btn" routerLink="/add-medicos">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>  
+    </div>
+  </div>
+    <form #clienteForm="" class="mat-elevation-z8">
 
+    <div class="div-input">
     <mat-form-field class="width-100">
       <mat-label>Agenda</mat-label>
       <mat-select>
@@ -105,7 +118,7 @@
     </section>
 
     <mat-divider></mat-divider>
-
+    </div>
     <button mat-raised-button class="btn-agn">AGENDAR</button>
   </form>
 </div>
