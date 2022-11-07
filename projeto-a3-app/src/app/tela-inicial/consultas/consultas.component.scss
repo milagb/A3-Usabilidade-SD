@@ -1,0 +1,47 @@
+table {
+    width: 100%;
+}
+
+.tb{
+  height: 500px;
+  overflow: auto;
+}
+
+.btn-add{
+  margin-left: 80%;
+  background-color: green;
+  color: white;
+  font-size: 9px;
+  line-height: 35px;
+  height: auto;
+  width: auto;
+}
+
+.lblGer {
+  color: white;
+  font-size: medium;
+  margin: 8px 0px 0px 4px;
+}
+
+.table-title{
+  background-color: rgb(9, 22, 94);
+  height: 60px;
+}
+
+.content{
+  margin: 20px 50px 0px 50px;
+}
+
+.icon{
+  color: red;
+}
+
+.icon-eye{
+  color: rgb(206, 206, 63);
+}
+
+.width-50{width: 48%; margin-top: 12px; color: white;}
+.ml-1{margin-left: 1%;}
+.ml-2{margin-left: 2%;}
+.width-100{width: 100%;}
+.width-25{width: 25%;}

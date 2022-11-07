@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TelaInicialRoutingModule } from './tela-inicial-routing.module';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
-import { CadastroConsultaComponent } from './cadastro-consulta/cadastro-consulta.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from '../componentes/nav/nav.component';
 import { AddMedicosComponent } from './medicos/add-medicos/add-medicos.component';
@@ -33,13 +32,16 @@ import { PacientesComponent } from './pacientes/pacientes.component';
 import { AddPacientesComponent } from './pacientes/add-pacientes/add-pacientes.component';
 import { ViewPacientesComponent } from './pacientes/view-pacientes/view-pacientes.component';
 import { EditPacientesComponent } from './pacientes/edit-pacientes/edit-pacientes.component';
+import { ConsultasComponent } from './consultas/consultas.component';
+import { AddConsultasComponent } from './consultas/add-consultas/add-consultas.component';
+import { ViewConsultasComponent } from './consultas/view-consultas/view-consultas.component';
+import { EditConsultasComponent } from './consultas/edit-consultas/edit-consultas.component';
 
 
 
 @NgModule({
   declarations: [
     TelaInicialComponent,
-    CadastroConsultaComponent,
     HomeComponent,
     NavComponent,
     AddMedicosComponent,
@@ -50,7 +52,11 @@ import { EditPacientesComponent } from './pacientes/edit-pacientes/edit-paciente
     PacientesComponent,
     AddPacientesComponent,
     ViewPacientesComponent,
-    EditPacientesComponent
+    EditPacientesComponent,
+    ConsultasComponent,
+    AddConsultasComponent,
+    ViewConsultasComponent,
+    EditConsultasComponent
   ],
   imports: [
     CommonModule,
