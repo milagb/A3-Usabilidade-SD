@@ -8,6 +8,7 @@
               <mat-form-field>
                 <input
                   matInput
+                  [(ngModel)]="usuario"
                   placeholder="Email"
                   required
                   name="email"
@@ -16,9 +17,11 @@
                   <mat-error *ngIf="email.invalid">O Email é obrigatório</mat-error>
                 <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
+
               <mat-form-field>
                 <input
                   matInput
+                  [(ngModel)]="senha"
                   placeholder="Senha"
                   type="password"
                   required
@@ -36,34 +39,37 @@
                   </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
-              <mat-checkbox>Lembre de mim!</mat-checkbox>
+
+              <!--<mat-checkbox>Lembre de mim!</mat-checkbox>-->
               <button
                 mat-raised-button
                 color="primary"
                 class="login-button">
                 Sign In
               </button>
+              <!--<mat-spinner [diameter]="50" *ngIf="isLoading"></mat-spinner>-->
             </form>
           </mat-card-content>
       </mat-tab>
+
       <mat-tab label="Sign Up">
         <mat-card-content>
-          <form action="">
+          <form id="formData" #userData="ngForm" (ngSubmit)="registerUser(userData.value)">
             <mat-form-field>
               <input
                 matInput
-                placeholder="Nome"
+                placeholder="Nome Completo"
                 required
-                name="username"
+                name="firstname"
                 ngModel
-                #username="ngModel">
+                #firstname="ngModel">
               <mat-icon matSuffix>perm_identity</mat-icon>
               <mat-error
-                *ngIf="username.invalid">
+                *ngIf="firstname.invalid">
                 Nome é obrigatório
               </mat-error>
-
             </mat-form-field>
+
             <mat-form-field>
               <input
                 matInput
@@ -75,6 +81,22 @@
                 <mat-error *ngIf="email.invalid">Email é obrigatório</mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
+
+            <mat-form-field>
+              <input
+              matInput
+              placeholder="Telefone"
+              required
+              name="telefone"
+              ngModel
+              #telefone="ngModel">
+              <mat-error
+                *ngIf="telefone.errors">
+                O telefone é obrigatório
+              </mat-error>
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+
             <mat-form-field>
               <input
                 matInput
@@ -94,24 +116,8 @@
                   A senha deve ter comprimento 6
                 </mat-error>
               <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
 
-            </mat-form-field>
-            <mat-form-field>
-                <input
-                matInput
-                placeholder="Senha"
-                type="password"
-                required
-                minlength="6"
-                name="repassword"
-                ngModel
-                #repassword="ngModel">
-                <mat-error
-                  *ngIf="repassword.errors">
-                  Redigitar a senha é necessária
-                </mat-error>
-              <mat-icon matSuffix>lock</mat-icon>
-            </mat-form-field>
             <button
               mat-raised-button
               color="primary"
@@ -124,3 +130,4 @@
     </mat-tab-group>
   </mat-card>
 </div>
+<lib-ng-toast></lib-ng-toast>

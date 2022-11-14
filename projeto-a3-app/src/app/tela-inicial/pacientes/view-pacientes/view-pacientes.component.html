@@ -1,1 +1,114 @@
-<p>view-pacientes works!</p>
+<div class="table-title">
+    <div class="row">
+      <div class="width-50">
+        <label class="lblGer"><b>PACIENTES &nbsp; > </b></label>
+          <label class="lblGer"><b>VISUALIZAR</b></label>
+        </div>
+      <div class="width-50 ml-2">
+          <button mat-raised-button class="btn" routerLink="/pacientes">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>  
+    </div>
+  </div>
+  
+  <div class="content">
+      <form #employeeForm="ngForm" class="mat-elevation-z8">
+  
+      <div class="div-input">
+        <br/><br/>
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="Nome"
+          name="Nome"
+          ngModel
+          [disabled]="true"/>
+        <mat-error>Digite um nome válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+          <input
+            type="text"
+            matInput
+            placeholder="Sobrenome"
+            name="Sobrenome"
+            ngModel
+            [disabled]="true"/>
+          <mat-error>Digite um Sobrenome válido</mat-error>
+        </mat-form-field>
+  
+      <mat-form-field class="width-50">
+          <mat-label>Sexo</mat-label>
+          <mat-select [disabled]="true">
+            <mat-option value="option">F</mat-option>
+            <mat-option value="option">M</mat-option>
+          </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="width-50 ml-2">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" [disabled]="true">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="Celular"
+          name="Celular"
+          ngModel
+          [disabled]="true"/>
+        <mat-error>Digite um celular válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+        <input
+          type="text"
+          matInput
+          placeholder="Telefone"
+          ngModel
+          name="Telefone"
+          [disabled]="true"/>
+        <mat-error>Digite um Telefone válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="CPF"
+          name="CPF"
+          ngModel
+          [disabled]="true"/>
+        <mat-error>Digite um cpf válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+        <input
+          type="text"
+          matInput
+          placeholder="Email"
+          name="Email"
+          ngModel
+          [disabled]="true"/>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <input
+          type="text"
+          matInput
+          placeholder="Endereço"
+          name="Endereco"
+          ngModel
+          [disabled]="true" value="teste"/>
+      </mat-form-field>
+      </div>
+      <br/>
+      <br/>
+    </form>
+  </div>

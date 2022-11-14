@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TelaInicialRoutingModule } from './tela-inicial-routing.module';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
@@ -60,6 +63,10 @@ import { EditConsultasComponent } from './consultas/edit-consultas/edit-consulta
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     TelaInicialRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
