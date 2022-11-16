@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "src/app/api.service";
 
 export interface PeriodicElement {
   nome: string;
@@ -30,12 +31,39 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class MedicosComponent implements OnInit {
 
-  displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'sexo', 'actions'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'uf', 'ativo', 'actions'];
+  dataSource: any = [];
+  
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.getAllEmployee();
+  }
+
+  async getAllEmployee() {
+    this.apiService.getAllEmployee().subscribe((data : any) => {
+      // const text = JSON.stringify(data);
+      // console.log('1', text);
+      // const myArr = JSON.parse(text);
+      // console.log('2', myArr);
+      if (data != null) {
+        var resultData = data;
+        if (resultData) {
+          this.dataSource = resultData;
+          console.log('3', this.dataSource);
+        }
+      }
+    },
+    (error : any)=> {
+        if (error) {
+          if (error.status == 404) {
+            if(error.error && error.error.message){
+              this.dataSource = [];
+            }
+          }
+        }
+      });
   }
 
 }

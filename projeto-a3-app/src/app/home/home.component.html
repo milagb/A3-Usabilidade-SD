@@ -47,7 +47,7 @@
                 class="login-button">
                 Sign In
               </button>
-              <!--<mat-spinner [diameter]="50" *ngIf="isLoading"></mat-spinner>-->
+              <mat-spinner [diameter]="50" *ngIf="isLoading"></mat-spinner>
             </form>
           </mat-card-content>
       </mat-tab>
@@ -95,6 +95,14 @@
                 O telefone é obrigatório
               </mat-error>
             <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            
+            <mat-form-field class="width-50">
+              <mat-label>Cargo</mat-label>
+              <mat-select name="cargo" ngModel #cargo="ngModel" required>
+                <mat-option value="Analista Recepção">Analista Recepção</mat-option>
+                <mat-option value="Médico Pediatra">Médico Pediatra</mat-option>
+              </mat-select>
           </mat-form-field>
 
             <mat-form-field>

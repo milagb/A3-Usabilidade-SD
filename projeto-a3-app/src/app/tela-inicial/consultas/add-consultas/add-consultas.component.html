@@ -14,7 +14,7 @@
   
 
 <div class="content">
-    <form #clienteForm="" class="mat-elevation-z8">
+    <form #userData="ngForm" class="mat-elevation-z8" (ngSubmit)="registerConsultas(userData.value)">
 
     <div class="div-input">
         <br/><br/>

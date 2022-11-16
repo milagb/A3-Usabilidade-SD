@@ -39,6 +39,8 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { AddConsultasComponent } from './consultas/add-consultas/add-consultas.component';
 import { ViewConsultasComponent } from './consultas/view-consultas/view-consultas.component';
 import { EditConsultasComponent } from './consultas/edit-consultas/edit-consultas.component';
+import { NgToastModule } from 'ng-angular-popup'
+import {DatePipe} from '@angular/common';
 
 
 
@@ -83,10 +85,12 @@ import { EditConsultasComponent } from './consultas/edit-consultas/edit-consulta
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgToastModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class TelaInicialModule { }

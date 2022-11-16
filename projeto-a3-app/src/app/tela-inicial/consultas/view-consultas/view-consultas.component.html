@@ -20,31 +20,45 @@
         <br/><br/>
     <mat-form-field class="width-100">
       <mat-label>Agenda</mat-label>
-      <mat-select [disabled]="true">
-          <mat-option>
-          
-          </mat-option>
-      </mat-select>
+      <input
+        type="text"
+        matInput
+        placeholder="Agenda"
+        name="Agenda"
+        ngModel
+        [disabled]="true"/>
+        <span>{{ consultaDetail.agenda }}</span>
     </mat-form-field>
 
     <mat-form-field class="width-50">
       <mat-label>Especialidade</mat-label>
-      <mat-select [disabled]="true">
-        <mat-option value="option">Pediatra</mat-option>
-      </mat-select>
+      <input
+        type="text"
+        matInput
+        placeholder="Especialidade"
+        name="Especialidade"
+        ngModel
+        [disabled]="true"/>
+        <span>{{ consultaDetail.especialidade }}</span>
     </mat-form-field>
 
     <mat-form-field class="width-50 ml-2">
       <mat-label>Médico</mat-label>
-      <mat-select [disabled]="true">
-        <mat-option value="option">Pamela Martini</mat-option>
-      </mat-select>
+      <input
+        type="text"
+        matInput
+        placeholder="Médico"
+        name="Medico"
+        ngModel
+        [disabled]="true"/>
+        <span>{{ consultaDetail.medico }}</span>
     </mat-form-field>
 
     <div class="example-container">
       <mat-form-field class="width-50">
         <mat-label>Data</mat-label>
         <input matInput [matDatepicker]="picker" [disabled]="true">
+        <span>{{ consultaDetail.data }}</span>
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -52,9 +66,14 @@
 
       <mat-form-field class="width-50 ml-2">
         <mat-label>Horário</mat-label>
-        <mat-select [disabled]="true">
-          <mat-option value="option">09:30</mat-option>
-        </mat-select>
+        <input
+        type="text"
+        matInput
+        placeholder="Horario"
+        name="Horario"
+        ngModel
+        [disabled]="true"/>
+        <span>{{ consultaDetail.horario }}</span>
       </mat-form-field>
     </div>
 
@@ -66,6 +85,7 @@
         name="Paciente"
         ngModel
         [disabled]="true"/>
+        <span>{{ consultaDetail.paciente }}</span>
       <mat-error>Digite um nome válido</mat-error>
     </mat-form-field>
 
@@ -77,6 +97,7 @@
         name="Celular"
         ngModel
         [disabled]="true"/>
+        <span>{{ consultaDetail.celular }}</span>
       <mat-error>Digite um celular válido</mat-error>
     </mat-form-field>
 
@@ -88,6 +109,7 @@
         ngModel
         name="Telefone"
         [disabled]="true" />
+        <span>{{ consultaDetail.telefone }}</span>
       <mat-error>Digite um Telefone válido</mat-error>
     </mat-form-field>
 
@@ -99,6 +121,7 @@
         name="CPF"
         ngModel
         [disabled]="true"/>
+        <span>{{ consultaDetail.cpf }}</span>
       <mat-error>Digite um cpf válido</mat-error>
     </mat-form-field>
 
@@ -110,10 +133,11 @@
         name="Observações"
         ngModel
         [disabled]="true" />
+        <span>{{ consultaDetail.observacoes }}</span>
     </mat-form-field>
 
     <section class="example-section">
-      <mat-checkbox class="mat-chk" [disabled]="true">Retorno</mat-checkbox>
+      <mat-checkbox class="mat-chk" [disabled]="true" [checked]="consultaDetail.retorno">Retorno</mat-checkbox>
     </section>
     </div>
     <br/>

@@ -12,4 +12,8 @@ export class AddPacientesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  registerPacientes(paciente: any){
+    //this.apiService.registerPacientes(paciente);
+  }
+
 }

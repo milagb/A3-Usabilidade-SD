@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup'
+import { Medico } from "src/app/medico.model";
 import { ApiService } from "src/app/api.service";
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-edit-medicos',
@@ -11,56 +13,89 @@ import { ApiService } from "src/app/api.service";
 })
 export class EditMedicosComponent implements OnInit {
 
-  isSubmitted: boolean = false;
-  employeeId: any;
+  editEmployeeForm: employeeForm = new employeeForm();
 
-  constructor(private route: ActivatedRoute) { }
+  @ViewChild("employeeForm")
+  employeeForm!: NgForm;
+
+  isSubmitted: boolean = false;
+  Id: any;
+  
+
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private dateAdapter: DateAdapter<Date>, 
+    private router: Router, private toast: NgToastService) { 
+    this.dateAdapter.setLocale('en-GB'); 
+  }
 
   ngOnInit(): void {
-    this.employeeId = this.route.snapshot.params['employeeId'];
+    this.Id = this.route.snapshot.params['Id'];
     this.getEmployeeDetailById();
   }
 
+  
+
   getEmployeeDetailById() {
-    // this.httpProvider.getEmployeeDetailById(this.employeeId).subscribe((data: any) => {
-    //   if (data != null && data.body != null) {
-    //     var resultData = data.body;
-    //     if (resultData) {
-    //       this.editEmployeeForm.Id = resultData.id;
-    //       this.editEmployeeForm.Nome = resultData.firstName;
-    //       this.editEmployeeForm.LastName = resultData.lastName;
-    //       this.editEmployeeForm.Email = resultData.email;
-    //       this.editEmployeeForm.Address = resultData.address;
-    //       this.editEmployeeForm.Phone = resultData.phone;
-    //     }
-    //   }
-    // },
-    //   (error: any) => { });
+    this.apiService.getEmployeeDetailById(this.Id).subscribe((data: any) => {
+      console.log(data);
+      if (data != null) {
+        var resultData = data;
+        console.log('resultData: ', resultData.uf)
+        if (resultData) {
+          //this.employeeForm.Id = resultData.id;
+          this.editEmployeeForm.firstname = resultData.firstname;
+          this.editEmployeeForm.lastname = resultData.lastname;
+          this.editEmployeeForm.email = resultData.email;
+          this.editEmployeeForm.occupation = resultData.occupation;
+          this.editEmployeeForm.nascimento = resultData.nascimento;
+          this.editEmployeeForm.celular = resultData.celular;
+          this.editEmployeeForm.telefone = resultData.telefone;
+          this.editEmployeeForm.crm = resultData.crm;
+          this.editEmployeeForm.uf = resultData.uf;
+          this.editEmployeeForm.email = resultData.email;
+          this.editEmployeeForm.ativo = resultData.ativo;
+        }
+      }
+    },
+      (error: any) => { });
   }
 
   EditEmployee(isValid: any) {
-    // this.isSubmitted = true;
-    // if (isValid) {
-    //   this.httpProvider.saveEmployee(this.editEmployeeForm).subscribe(async data => {
-    //     if (data != null && data.body != null) {
-    //       var resultData = data.body;
-    //       if (resultData != null && resultData.isSuccess) {
-    //         if (resultData != null && resultData.isSuccess) {
-    //           this.toastr.success(resultData.message);
-    //           setTimeout(() => {
-    //             this.router.navigate(['/Home']);
-    //           }, 500);
-    //         }
-    //       }
-    //     }
-    //   },
-    //     async error => {
-    //       this.toastr.error(error.message);
-    //       setTimeout(() => {
-    //         this.router.navigate(['/Home']);
-    //       }, 500);
-    //     });
-    // }
+    this.isSubmitted = true;
+    if (isValid) {
+      this.apiService.updateEmployee(this.Id, this.editEmployeeForm).subscribe(async data => {
+        if (data != null) {
+          var resultData = data;
+          if (resultData != null) {
+            if (resultData != null) {
+              this.toast.success({detail:"Success Message",summary: 'Medico updated successfully', duration:5000})
+              setTimeout(() => {
+                this.router.navigate(['/medicos']);
+              }, 500);
+            }
+          }
+        }
+      },
+        async error => {
+          this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          setTimeout(() => {
+            this.router.navigate(['/medicos']);
+          }, 5000);
+        });
+    }
   }
 
+}
+
+export class employeeForm {
+  Id: number = 0;
+  firstname: string = "";
+  lastname: string = "";
+  occupation: string = "";
+  nascimento: string = "";
+  celular: string = "";
+  telefone: string = "";
+  crm: string = "";
+  uf: string = "";
+  email: string = "";
+  ativo: boolean = false;
 }

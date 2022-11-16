@@ -1,11 +1,14 @@
 export interface Medico {
     _id: string;
-    nome: string;
-    sobrenome: string;
-    especialidade: string;
-    nascimento: Date;
+    firstname: string;
+    lastname: string;
+    occupation: string;
+    nascimento: string;
     celular: number;
     telefone: number;
     crm: number;
+    uf: string
     email: string;
+    password: string;
+    ativo: boolean;
   }

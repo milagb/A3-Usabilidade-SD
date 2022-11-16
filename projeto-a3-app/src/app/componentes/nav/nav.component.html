@@ -16,12 +16,12 @@
 
         <img src="https://i.pinimg.com/originals/64/34/d7/6434d72ce9e16251c4f41f4e5a146567.png" alt="" class="avatar mat-elevation-z8">
 
-        <h4 class="name">Pamela Martini</h4>
-        <p class="designation">Médica Pediatra</p>
+        <h4 class="name">{{nome}}</h4>
+        <p class="designation">{{cargo}}</p>
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" routerLink="/tela-inicial">
+        <button mat-button class="menu-button" [routerLink]="['/tela-inicial/', Id]">
             <mat-icon>home</mat-icon>
             <span> Início</span>
         </button>

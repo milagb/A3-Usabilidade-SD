@@ -49,7 +49,7 @@ const routes: Routes = [{
       component: MedicosComponent
     },
     {
-      path: 'view-medicos',
+      path: 'view-medicos/:employeeId',
       component: ViewMedicosComponent
     },
     {
@@ -57,7 +57,7 @@ const routes: Routes = [{
       component: AddMedicosComponent
     },
     {
-      path: 'edit-medicos',
+      path: 'edit-medicos/:Id',
       component: EditMedicosComponent
     },
     {

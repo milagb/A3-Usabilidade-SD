@@ -18,6 +18,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule  } from "@angular/material/form-field";
 import { MatProgressSpinnerModule  } from "@angular/material/progress-spinner";
+import { MatSelectModule } from '@angular/material/select'
 
 import { ApiService } from "../api.service";
 import { NgToastModule } from 'ng-angular-popup'
@@ -45,6 +46,7 @@ import { NgToastModule } from 'ng-angular-popup'
     MatCheckboxModule,
     MatIconModule,
     NgToastModule,
+    MatSelectModule,
     MatProgressSpinnerModule
   ],
   providers: [ApiService],

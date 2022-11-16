@@ -23,4 +23,8 @@ export class AddConsultasComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  registerConsultas(consulta: any){
+    //this.apiService.registerConsultas(consulta);
+  }
+
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
   loadChildren: () => import('./home/home.module').then((m)=>m.HomeModule)
 },
 {
-  path: 'tela-inicial',
+  path: 'tela-inicial/:Id',
   loadChildren: () => import('./tela-inicial/tela-inicial.module').then((m) => m.TelaInicialModule),
 
 }
