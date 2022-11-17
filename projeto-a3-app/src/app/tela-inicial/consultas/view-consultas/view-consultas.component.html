@@ -25,9 +25,8 @@
         matInput
         placeholder="Agenda"
         name="Agenda"
-        ngModel
+        value="{{ consultaDetail.agenda}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.agenda }}</span>
     </mat-form-field>
 
     <mat-form-field class="width-50">
@@ -37,9 +36,8 @@
         matInput
         placeholder="Especialidade"
         name="Especialidade"
-        ngModel
+        value="{{ consultaDetail.occupation}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.especialidade }}</span>
     </mat-form-field>
 
     <mat-form-field class="width-50 ml-2">
@@ -49,16 +47,14 @@
         matInput
         placeholder="Médico"
         name="Medico"
-        ngModel
+        value="{{ consultaDetail.medico}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.medico }}</span>
     </mat-form-field>
 
     <div class="example-container">
       <mat-form-field class="width-50">
         <mat-label>Data</mat-label>
-        <input matInput [matDatepicker]="picker" [disabled]="true">
-        <span>{{ consultaDetail.data }}</span>
+        <input matInput [matDatepicker]="picker" [disabled]="true" value="{{ consultaDetail.data }}">
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -71,9 +67,8 @@
         matInput
         placeholder="Horario"
         name="Horario"
-        ngModel
+        value="{{ consultaDetail.horario}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.horario }}</span>
       </mat-form-field>
     </div>
 
@@ -83,10 +78,8 @@
         matInput
         placeholder="Paciente"
         name="Paciente"
-        ngModel
+        value="{{ consultaDetail.paciente}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.paciente }}</span>
-      <mat-error>Digite um nome válido</mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-50">
@@ -95,10 +88,8 @@
         matInput
         placeholder="Celular"
         name="Celular"
-        ngModel
+        value="{{ consultaDetail.celular}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.celular }}</span>
-      <mat-error>Digite um celular válido</mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-50 ml-2">
@@ -106,11 +97,9 @@
         type="text"
         matInput
         placeholder="Telefone"
-        ngModel
+        value="{{ consultaDetail.telefone}}"
         name="Telefone"
         [disabled]="true" />
-        <span>{{ consultaDetail.telefone }}</span>
-      <mat-error>Digite um Telefone válido</mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-50">
@@ -119,10 +108,8 @@
         matInput
         placeholder="CPF"
         name="CPF"
-        ngModel
+        value="{{ consultaDetail.cpf}}"
         [disabled]="true"/>
-        <span>{{ consultaDetail.cpf }}</span>
-      <mat-error>Digite um cpf válido</mat-error>
     </mat-form-field>
 
     <mat-form-field class="width-50 ml-2">
@@ -131,9 +118,8 @@
         matInput
         placeholder="Observações"
         name="Observações"
-        ngModel
+        value="{{ consultaDetail.observacoes}}"
         [disabled]="true" />
-        <span>{{ consultaDetail.observacoes }}</span>
     </mat-form-field>
 
     <section class="example-section">

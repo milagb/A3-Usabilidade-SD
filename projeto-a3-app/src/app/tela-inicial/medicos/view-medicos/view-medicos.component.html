@@ -23,9 +23,7 @@
           matInput
           placeholder="Nome"
           name="Nome"
-          required
           value="{{ employeeDetail.firstname }}"
-          minlength="2"
           [disabled]="true"/>
         <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
@@ -37,8 +35,6 @@
             placeholder="Sobrenome"
             name="Sobrenome"
             value="{{ employeeDetail.lastname }}"
-            required
-            minlength="2"
             [disabled]="true"/>
           <mat-error>Digite um Sobrenome válido</mat-error>
         </mat-form-field>
@@ -46,13 +42,13 @@
       <mat-form-field class="width-50">
           <mat-label>Especialidade</mat-label>
           <mat-select [(value)]="employeeDetail.occupation" [disabled]="true">
-            <mat-option value="pediatra">Pediatra</mat-option>
+            <mat-option value="Pediatra">Pediatra</mat-option>
           </mat-select>
       </mat-form-field>
     
       <mat-form-field class="width-50 ml-2">
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker" name="Nascimento" value="{{ employeeDetail.nascimento }}" required [disabled]="true">
+            <input matInput [matDatepicker]="picker" name="Nascimento" value="{{ employeeDetail.nascimento }}"  [disabled]="true">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker ></mat-datepicker>
@@ -65,7 +61,6 @@
           placeholder="Celular"
           name="Celular"
           value="{{ employeeDetail.celular }}"
-          required
           maxlength="11"
           pattern="^\d{3}\d{3}\d{4}$"
           [disabled]="true"/>
@@ -90,7 +85,6 @@
           placeholder="CRM"
           name="CRM"
           value="{{ employeeDetail.crm }}"
-          required
           minlength="11"
           [disabled]="true"/>
         <mat-error>Digite um crm válido</mat-error>
@@ -98,7 +92,7 @@
   
       <mat-form-field class="width-50 ml-2">
         <mat-label>UF</mat-label>
-        <mat-select name="UF" [(value)]="employeeDetail.uf" required [disabled]="true">
+        <mat-select name="UF" [(value)]="employeeDetail.uf"  [disabled]="true">
           <mat-option value="sp">SP</mat-option>
         </mat-select>
     </mat-form-field>
@@ -109,8 +103,7 @@
           matInput
           placeholder="Email"
           name="Email"
-          value="{{ employeeDetail.email }}"
-          required 
+          value="{{ employeeDetail.email }}" 
           pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,3}$"
           [disabled]="true"/>
       </mat-form-field>

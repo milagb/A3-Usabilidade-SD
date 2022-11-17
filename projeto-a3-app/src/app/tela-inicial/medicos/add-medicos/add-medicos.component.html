@@ -46,7 +46,11 @@
     <mat-form-field class="width-50">
         <mat-label>Especialidade</mat-label>
         <mat-select name="occupation" ngModel #occupation="ngModel" required>
-          <mat-option value="pediatra">Pediatra</mat-option>
+          <mat-option value="Cardiologia">Cardiologia</mat-option>
+          <mat-option value="Dermatologia">Dermatologia</mat-option>
+          <mat-option value="Oftalmologia">Oftalmologia</mat-option>
+          <mat-option value="Ortopedia e Traumatologia">Ortopedia e Traumatologia</mat-option>
+          <mat-option value="Pediatra">Pediatra</mat-option>
         </mat-select>
     </mat-form-field>
   
@@ -117,8 +121,9 @@
       <mat-checkbox class="mat-chk" name="ativo" ngModel #ativo="ngModel">Ativo</mat-checkbox>
     </section>
 
-    </div>
+    <mat-divider></mat-divider>
     <button mat-raised-button class="btn-agn">CONFIRMAR</button>
+    </div>
   </form>
 </div>
 <lib-ng-toast></lib-ng-toast>

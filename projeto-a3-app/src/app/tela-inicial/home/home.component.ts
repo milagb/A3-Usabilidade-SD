@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { ApiService } from 'src/app/api.service';
 import { formatDate } from '@angular/common';
+import { Observable, Subject } from 'rxjs';
 Chart.register(...registerables);
 
 @Component({
@@ -15,61 +16,66 @@ export class HomeComponent implements OnInit {
   medicos = 0;
   result: any[] = [];
   nome: string = '';
-  empoloyeeID : number = 0;
-  empList: Array<{nome: string, empoloyeeID: number}> = []; 
-  
-  dates = [
-    "01/01/2020",
-    "12/02/2020",
-    "23/01/2020",
-    "01/02/2020",
-    "01/02/2020",
-    "01/02/2020",
-    "01/06/2020",
-    "01/02/2020",
-    "01/05/2020",
-    "01/12/2020",
-    "01/11/2020",
-    "01/08/2020",
+  empoloyeeID: number = 0;
+  empList: Array<{ nome: string, empoloyeeID: number }> = [];
 
-  ]
+  dataSource: any;
+  date: any;
+  value: any;
+
+  pacientes = 0
+  consultas = 0
+  retornos = 0
+  hoje = 0
 
   constructor(private apiService: ApiService, private datePipe: DatePipe) { }
 
   ngOnInit() {
 
-    for (let index = 0; index < this.dates.length; index++) {
-      const element = new Date(this.dates[index]);
-      //console.log(this.monthNames[element.getMonth()])
-      this.nome = this.dates[index];
-      this.empoloyeeID = 1;
-      this.empList.push({ nome: this.nome, empoloyeeID: this.empoloyeeID });
-    }
+    this.getData().subscribe((dates) => {
 
-    const map = this.empList.reduce((map, current) => {
-      const month = this.getMonth(current.nome);
-      //console.log('month', month)
-      //console.log('month 2', current.nome)
-      const key = month.toISOString();
-      if (!map.has(key)) {
-        map.set(key, 0);
+      const d = this.datePipe.transform(new Date(), "dd/MM/yyyy")
+
+
+      for (let index = 0; index < dates.length; index++) {
+        const element = new Date(dates[index]);
+
+        //console.log(this.monthNames[element.getMonth()])
+        this.nome = dates[index];
+        this.empoloyeeID = 1;
+        this.empList.push({ nome: this.nome, empoloyeeID: this.empoloyeeID });
+        this.consultas++;
+
+        if (this.nome == d) {
+          this.hoje++
+        }
       }
 
-      //console.log('teste: ', key, map.get(key)! + current.empoloyeeID)
-      map.set(key, map.get(key)! + current.empoloyeeID);
+      const map = this.empList.reduce((map, current) => {
+        const month = this.getMonth(current.nome);
+        const key = month.toISOString();
+        if (!map.has(key)) {
+          map.set(key, 0);
+        }
 
-      return map;
-    }, new Map<string, number>());
+        map.set(key, map.get(key)! + current.empoloyeeID);
 
-    const months = Array.from(map.keys())
-      .sort((a, b) => a.localeCompare(b));
-    this.result = months.map(x => ({
-      month: formatDate(x, 'MMM', 'en-US'),
-      value: map.get(x)
-    }));
+        return map;
+      }, new Map<string, number>());
+
+      const months = Array.from(map.keys())
+        .sort((a, b) => a.localeCompare(b));
+      this.result = months.map(x => ({
+        month: formatDate(x, 'MMM', 'en-US'),
+        value: map.get(x)
+      }));
+
+      this.loadChart();
+    })
 
     this.getAllEmployee();
-    this.loadChart();
+    this.getAllPacientes();
+
   }
 
   private getMonth(dateString: string): Date {
@@ -80,13 +86,16 @@ export class HomeComponent implements OnInit {
   }
 
   async getAllEmployee() {
+
     this.apiService.getAllEmployee().subscribe((data: any) => {
       if (data != null) {
         var resultData = data;
         if (resultData) {
-          //console.log('3', data);
           for (let index = 0; index < data.length; index++) {
-            this.medicos++
+            resultData = data[index]
+            if (resultData.ativo == true) {
+              this.medicos++
+            }
           }
         }
       }
@@ -101,16 +110,41 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  async loadChart() {
+  async getAllPacientes() {
+
+    this.apiService.getAllPaciente().subscribe((data: any) => {
+      if (data != null) {
+        var resultData = data;
+        if (resultData) {
+          for (let index = 0; index < data.length; index++) {
+            resultData = data[index]
+            if (resultData.ativo == true) {
+              this.pacientes++
+            }
+          }
+        }
+      }
+    },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            if (error.error && error.error.message) {
+            }
+          }
+        }
+      });
+  }
+
+  loadChart() {
 
     let label = []
     let data = []
 
-    for(let item of this.result){
+    for (let item of this.result) {
       label.push(item.month)
       data.push(item.value)
     }
-    
+
     var myChart = new Chart("myChart", {
       type: 'line',
       data: {
@@ -145,6 +179,43 @@ export class HomeComponent implements OnInit {
         }
       }
     });
+  }
+
+  getData(): Observable<string> {
+
+    var subject = new Subject<string>();
+
+    this.apiService.getAllConsulta().subscribe((data: any) => {
+      let object = []
+
+      if (data != null) {
+        var resultData = data;
+
+        for (let index = 0; index < resultData.length; index++) {
+          this.date = resultData[index];
+          this.date.data = this.datePipe.transform(this.date.data, "dd/MM/yyyy");
+
+          object.push(this.date.data);
+
+          if (this.date.retorno == true) {
+            this.retornos++
+          }
+        }
+
+        this.dataSource = object
+
+        subject.next(this.dataSource);
+      }
+    },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            this.dataSource = [];
+          }
+        }
+      });
+
+    return subject.asObservable();
   }
 
 }

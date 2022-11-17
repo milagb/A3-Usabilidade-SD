@@ -23,7 +23,7 @@
           matInput
           placeholder="Nome"
           name="Nome"
-          ngModel
+          value="{{ pacienteDetail.firstname }}"
           [disabled]="true"/>
         <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
@@ -34,22 +34,22 @@
             matInput
             placeholder="Sobrenome"
             name="Sobrenome"
-            ngModel
+            value="{{ pacienteDetail.lastname }}"
             [disabled]="true"/>
           <mat-error>Digite um Sobrenome válido</mat-error>
         </mat-form-field>
   
       <mat-form-field class="width-50">
           <mat-label>Sexo</mat-label>
-          <mat-select [disabled]="true">
-            <mat-option value="option">F</mat-option>
-            <mat-option value="option">M</mat-option>
+          <mat-select [(value)]="pacienteDetail.sexo" [disabled]="true">
+            <mat-option value="F">F</mat-option>
+            <mat-option value="M">M</mat-option>
           </mat-select>
       </mat-form-field>
     
       <mat-form-field class="width-50 ml-2">
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker" [disabled]="true">
+            <input matInput [matDatepicker]="picker" [disabled]="true" value="{{ pacienteDetail.nascimento }}">
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -61,7 +61,7 @@
           matInput
           placeholder="Celular"
           name="Celular"
-          ngModel
+          value="{{ pacienteDetail.celular }}"
           [disabled]="true"/>
         <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
@@ -71,7 +71,7 @@
           type="text"
           matInput
           placeholder="Telefone"
-          ngModel
+          value="{{ pacienteDetail.telefone }}"
           name="Telefone"
           [disabled]="true"/>
         <mat-error>Digite um Telefone válido</mat-error>
@@ -83,7 +83,7 @@
           matInput
           placeholder="CPF"
           name="CPF"
-          ngModel
+          value="{{ pacienteDetail.cpf }}"
           [disabled]="true"/>
         <mat-error>Digite um cpf válido</mat-error>
       </mat-form-field>
@@ -94,7 +94,7 @@
           matInput
           placeholder="Email"
           name="Email"
-          ngModel
+          value="{{ pacienteDetail.email }}"
           [disabled]="true"/>
       </mat-form-field>
 
@@ -104,7 +104,7 @@
           matInput
           placeholder="Endereço"
           name="Endereco"
-          ngModel
+          value="{{ pacienteDetail.endereco }}"
           [disabled]="true" value="teste"/>
       </mat-form-field>
       </div>

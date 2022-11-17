@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup'
+import { ApiService } from "src/app/api.service";
+import { DateAdapter } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-edit-pacientes',
@@ -8,56 +13,87 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditPacientesComponent implements OnInit {
 
-  isSubmitted: boolean = false;
-  employeeId: any;
+  editPacienteForm: pacienteForm = new pacienteForm();
 
-  constructor(private route: ActivatedRoute) { }
+  @ViewChild("pacienteForm")
+  pacienteForm!: NgForm;
+
+  isSubmitted: boolean = false;
+  pacienteId: any;
+
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private dateAdapter: DateAdapter<Date>, 
+    private router: Router, private toast: NgToastService) {
+      this.dateAdapter.setLocale('en-GB'); 
+     }
 
   ngOnInit(): void {
-    this.employeeId = this.route.snapshot.params['employeeId'];
-    this.getEmployeeDetailById();
+    this.pacienteId = this.route.snapshot.params['pacienteId'];
+    this.getPacienteDetailById();
   }
 
-  getEmployeeDetailById() {
-    // this.httpProvider.getEmployeeDetailById(this.employeeId).subscribe((data: any) => {
-    //   if (data != null && data.body != null) {
-    //     var resultData = data.body;
-    //     if (resultData) {
-    //       this.editEmployeeForm.Id = resultData.id;
-    //       this.editEmployeeForm.Nome = resultData.firstName;
-    //       this.editEmployeeForm.LastName = resultData.lastName;
-    //       this.editEmployeeForm.Email = resultData.email;
-    //       this.editEmployeeForm.Address = resultData.address;
-    //       this.editEmployeeForm.Phone = resultData.phone;
-    //     }
-    //   }
-    // },
-    //   (error: any) => { });
+  getPacienteDetailById() {
+    this.apiService.getPacienteDetailById(this.pacienteId).subscribe((data: any) => {
+      console.log(data);
+      if (data != null) {
+        var resultData = data;
+        console.log('resultData: ', resultData)
+        if (resultData) {
+          //this.employeeForm.Id = resultData.id;
+          this.editPacienteForm.firstname = resultData.firstname;
+          this.editPacienteForm.lastname = resultData.lastname;
+          this.editPacienteForm.email = resultData.email;
+          this.editPacienteForm.sexo = resultData.sexo;
+          this.editPacienteForm.nascimento = resultData.nascimento;
+          this.editPacienteForm.celular = resultData.celular;
+          this.editPacienteForm.telefone = resultData.telefone;
+          this.editPacienteForm.cpf = resultData.cpf;
+          this.editPacienteForm.endereco = resultData.endereco;
+          this.editPacienteForm.email = resultData.email;
+          this.editPacienteForm.ativo = resultData.ativo;
+        }
+      }
+    },
+      (error: any) => { });
   }
 
-  EditEmployee(isValid: any) {
-    // this.isSubmitted = true;
-    // if (isValid) {
-    //   this.httpProvider.saveEmployee(this.editEmployeeForm).subscribe(async data => {
-    //     if (data != null && data.body != null) {
-    //       var resultData = data.body;
-    //       if (resultData != null && resultData.isSuccess) {
-    //         if (resultData != null && resultData.isSuccess) {
-    //           this.toastr.success(resultData.message);
-    //           setTimeout(() => {
-    //             this.router.navigate(['/Home']);
-    //           }, 500);
-    //         }
-    //       }
-    //     }
-    //   },
-    //     async error => {
-    //       this.toastr.error(error.message);
-    //       setTimeout(() => {
-    //         this.router.navigate(['/Home']);
-    //       }, 500);
-    //     });
-    // }
+  EditPaciente(isValid: any) {
+    this.isSubmitted = true;
+    if (isValid) {
+      this.apiService.updatePaciente(this.pacienteId, this.editPacienteForm).subscribe(async data => {
+        if (data != null) {
+          var resultData = data;
+          if (resultData != null) {
+            if (resultData != null) {
+              this.toast.success({detail:"Success Message",summary: 'Paciente updated successfully', duration:5000})
+              setTimeout(() => {
+                this.router.navigate(['/pacientes']);
+              }, 500);
+            }
+          }
+        }
+      },
+        async error => {
+          this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          setTimeout(() => {
+            this.router.navigate(['/pacientes']);
+          }, 5000);
+        });
+    }
   }
 
 }
+
+export class pacienteForm {
+  Id: number = 0;
+  firstname: string = "";
+  lastname: string = "";
+  sexo: string = "";
+  nascimento: string = "";
+  celular: string = "";
+  telefone: string = "";
+  cpf: string = "";
+  endereco: string = "";
+  email: string = "";
+  ativo: boolean = false;
+}
+

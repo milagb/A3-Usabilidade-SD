@@ -1,28 +1,15 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
-import { Subject } from 'rxjs';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-} from 'angular-calendar';
-import { EventColor } from 'calendar-utils';
+import { Component } from '@angular/core';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { Subject, Observable } from 'rxjs';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
+import { DatePipe } from '@angular/common';
+import { DateAdapter } from '@angular/material/core';
+import { ApiService } from 'src/app/api.service';
 
+interface Agenda {
+  start: Date;
+  title: string
+}
 @Component({
   selector: 'app-agendamentos',
   templateUrl: './agendamentos.component.html',
@@ -36,64 +23,40 @@ export class AgendamentosComponent {
 
   viewDate: Date = new Date();
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
+  dataSource: any;
+  date: any;
+  name = '';
+  occupation = '';
+  time = '';
+  doctor = '';
+
+  start: string = '';
+  title : string = '';
+  empList: Array<Agenda> = [];
+
+  agendas: Agenda[] = [
+    {start: new Date('Nov 17 2022 16:00'), title: 'Lucas Lindo - Clinico Geral - 16:00 - Doc. Mathias Bezerra'},
+    {start: new Date('Nov 17 2022 10:00'), title: 'Teste 2'},
+    {start: new Date('Nov 17 2022 13:00'), title: 'Teste 3'},
   ];
 
-  refresh = new Subject<void>();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
+
+  constructor(private apiService: ApiService, private datePipe: DatePipe, private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('en-GB'); 
+   }
+
+  ngOnInit(): void {
+    
+    this.getData().subscribe((dates) => {
+      console.log('kissi kissi', dates)
+      this.empList = dates
+      this.events = this.empList
+    })
+    
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -124,31 +87,6 @@ export class AgendamentosComponent {
       }
       return iEvent;
     });
-    this.handleEvent('Dropped or resized', event);
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    
-  }
-
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
   }
 
   setView(view: CalendarView) {
@@ -159,9 +97,47 @@ export class AgendamentosComponent {
     this.activeDayIsOpen = false;
   }
 
-  constructor() { }
+  getData(): Observable<Agenda[]> {
 
-  ngOnInit(): void {
+    var subject = new Subject<Agenda[]>();
+
+    this.apiService.getAllConsulta().subscribe((data: any) => {
+
+      if (data != null) {
+        var resultData = data;
+        let start;
+
+        for (let index = 0; index < resultData.length; index++) {
+          this.date = resultData[index];
+          this.date.data = this.datePipe.transform(this.date.data, "MMM d y " + this.date.horario);
+
+          this.name = this.date.paciente
+          this.occupation = this.date.occupation
+          this.time = this.date.horario
+          this.doctor = this.date.medico
+
+          start = new Date(this.date.data)
+          
+
+          this.empList.push({
+            start: start,
+            title: this.name + ' - ' + this.time + ' - ' + this.occupation + ' - ' + this.doctor
+          });
+
+        }
+
+        subject.next(this.empList);
+      }
+    },
+      (error: any) => {
+        if (error) {
+          if (error.status == 404) {
+            this.dataSource = [];
+          }
+        }
+      });
+
+    return subject.asObservable();
   }
 
 }

@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup'
-import { Medico } from "src/app/medico.model";
 import { ApiService } from "src/app/api.service";
 import { DateAdapter } from '@angular/material/core';
 

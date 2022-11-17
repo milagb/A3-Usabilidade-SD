@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.apiService.loginUser(credentials).subscribe((res: any) => {  
       console.log(res._id)    
               setTimeout(() => {
-                this.router.navigate(['tela-inicial/', res._id]);
+                this.router.navigate(['tela-inicial']);
               }, 2000);
     },
     (error :any)=> { 

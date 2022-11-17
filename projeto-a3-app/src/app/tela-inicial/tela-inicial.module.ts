@@ -40,7 +40,8 @@ import { AddConsultasComponent } from './consultas/add-consultas/add-consultas.c
 import { ViewConsultasComponent } from './consultas/view-consultas/view-consultas.component';
 import { EditConsultasComponent } from './consultas/edit-consultas/edit-consultas.component';
 import { NgToastModule } from 'ng-angular-popup'
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 
 
@@ -66,6 +67,7 @@ import {DatePipe} from '@angular/common';
   imports: [
     CommonModule,
     HttpClientModule,
+    NgxMatTimepickerModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

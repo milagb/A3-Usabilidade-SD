@@ -1,117 +1,85 @@
 <div class="table-title">
-    <div class="row">
-      <div class="width-50">
-        <label class="lblGer"><b>PACIENTES &nbsp; > </b></label>
-          <label class="lblGer"><b>EDITAR</b></label>
-        </div>
-      <div class="width-50 ml-2">
-          <button mat-raised-button class="btn" routerLink="/pacientes">
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-        </div>  
+  <div class="row">
+    <div class="width-50">
+      <label class="lblGer"><b>PACIENTES &nbsp; > </b></label>
+      <label class="lblGer"><b>EDITAR</b></label>
+    </div>
+    <div class="width-50 ml-2">
+      <button mat-raised-button class="btn" routerLink="/pacientes">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     </div>
   </div>
-  
-  <div class="content">
-      <form #employeeForm="ngForm" class="mat-elevation-z8">
-  
-      <div class="div-input">
-        <br/><br/>
+</div>
+
+<div class="content">
+  <form #pacienteForm="ngForm" class="mat-elevation-z8">
+
+    <div class="div-input">
+      <br /><br />
       <mat-form-field class="width-50">
-        <input
-          type="text"
-          matInput
-          placeholder="Nome"
-          name="Nome"
-          ngModel
-          required
-          minlength="2"/>
+        <input type="text" matInput placeholder="Nome" name="firstname" [(ngModel)]="editPacienteForm.firstname"
+          #firstname="ngModel" required minlength="2" />
         <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="width-50 ml-2">
-          <input
-            type="text"
-            matInput
-            placeholder="Sobrenome"
-            name="Sobrenome"
-            ngModel
-            required
-            minlength="2"/>
-          <mat-error>Digite um Sobrenome válido</mat-error>
-        </mat-form-field>
-  
-      <mat-form-field class="width-50">
-          <mat-label>Sexo</mat-label>
-          <mat-select>
-            <mat-option value="option">F</mat-option>
-            <mat-option value="option">M</mat-option>
-          </mat-select>
+        <input type="text" matInput placeholder="Sobrenome" name="lastname" [(ngModel)]="editPacienteForm.lastname"
+          #lastname="ngModel" required minlength="2" />
+        <mat-error>Digite um Sobrenome válido</mat-error>
       </mat-form-field>
-    
+
+      <mat-form-field class="width-50">
+        <mat-label>Sexo</mat-label>
+        <mat-select name="sexo" [(ngModel)]="editPacienteForm.sexo" #sexo="ngModel">
+          <mat-option value="F">F</mat-option>
+          <mat-option value="M">M</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field class="width-50 ml-2">
-            <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" name="nascimento" [(ngModel)]="editPacienteForm.nascimento"
+          #nascimento="ngModel">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-  
+
       <mat-form-field class="width-50">
-        <input
-          type="text"
-          matInput
-          placeholder="Celular"
-          name="Celular"
-          ngModel
-          required
-          minlength="11"/>
+        <input type="text" matInput placeholder="Celular" name="celular" [(ngModel)]="editPacienteForm.celular"
+          #celular="ngModel" required minlength="11" />
         <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="width-50 ml-2">
-        <input
-          type="text"
-          matInput
-          placeholder="Telefone"
-          ngModel
-          name="Telefone"
-          required />
+        <input type="text" matInput placeholder="Telefone" [(ngModel)]="editPacienteForm.telefone" #telefone="ngModel"
+          name="telefone" required />
         <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="width-50">
-        <input
-          type="text"
-          matInput
-          placeholder="CPF"
-          name="CPF"
-          ngModel
-          required
-          minlength="11"/>
+        <input type="text" matInput placeholder="CPF" name="cpf" [(ngModel)]="editPacienteForm.cpf" #cpf="ngModel"
+          required minlength="11" />
         <mat-error>Digite um cpf válido</mat-error>
       </mat-form-field>
-  
+
       <mat-form-field class="width-50 ml-2">
-        <input
-          type="text"
-          matInput
-          placeholder="Email"
-          name="Email"
-          ngModel
-          required />
+        <input type="text" matInput placeholder="Email" name="email" [(ngModel)]="editPacienteForm.email"
+          #email="ngModel" required />
       </mat-form-field>
 
       <mat-form-field class="width-100">
-        <input
-          type="text"
-          matInput
-          placeholder="Endereço"
-          name="Endereco"
-          ngModel
-          required />
+        <input type="text" matInput placeholder="Endereço" name="endereco" [(ngModel)]="editPacienteForm.endereco"
+          #endereco="ngModel" required />
       </mat-form-field>
-      </div>
-      <button mat-raised-button class="btn-agn" (click)="EditEmployee(employeeForm.form.valid)">CONFIRMAR</button>
-    </form>
-  </div>
+
+      <section class="example-section">
+        <mat-checkbox name="ativo" class="mat-chk" [(ngModel)]="editPacienteForm.ativo" #ativo="ngModel">Ativo
+        </mat-checkbox>
+      </section>
+    </div>
+    <button mat-raised-button class="btn-agn" (click)="EditPaciente(pacienteForm.form.valid)">CONFIRMAR</button>
+  </form>
+</div>
+<lib-ng-toast></lib-ng-toast>

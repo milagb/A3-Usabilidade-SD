@@ -37,11 +37,11 @@ const routes: Routes = [{
       component: AddConsultasComponent
     },
     {
-      path: 'view-consultas',
+      path: 'view-consultas/:consultaId',
       component: ViewConsultasComponent
     },
     {
-      path: 'edit-consultas',
+      path: 'edit-consultas/:consultaId',
       component: EditConsultasComponent
     },
     {
@@ -69,11 +69,11 @@ const routes: Routes = [{
       component: AddPacientesComponent
     },
     {
-      path: 'view-pacientes',
+      path: 'view-pacientes/:pacienteId',
       component: ViewPacientesComponent
     },
     {
-      path: 'edit-pacientes',
+      path: 'edit-pacientes/:pacienteId',
       component: EditPacientesComponent
     },
   ]
