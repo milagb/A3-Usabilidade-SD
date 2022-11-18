@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "src/app/api.service";
 import { DateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { NgToastService } from 'ng-angular-popup';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAnimationsExampleDialogComponent }  from "src/app/dialog-example/dialog-example.component";
 
 @Component({
   selector: 'app-consultas',
@@ -14,12 +17,29 @@ export class ConsultasComponent implements OnInit {
   dataSource = [];
   result: any;
 
-  constructor(private apiService: ApiService, private dateAdapter: DateAdapter<Date>, private datePipe: DatePipe) {
+  constructor(private apiService: ApiService, private dateAdapter: DateAdapter<Date>, private datePipe: DatePipe, public dialog: MatDialog, private toast: NgToastService) {
     this.dateAdapter.setLocale('en-GB'); 
    }
 
   ngOnInit(): void {
     this.getAllConsulta();
+  }
+
+  openDialog(id: any) {
+    let dialogRef = this.dialog.open(DialogAnimationsExampleDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'true') {
+        console.log(`result: ${id}`)
+        console.log(`result: ${result}`)
+        this.apiService.deleteConsulta(id).subscribe(async data => {
+          console.log(`deletou: ${id}`)
+          this.getAllConsulta();
+        },
+          async error => {
+            this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          });
+      }
+    })
   }
 
   async getAllConsulta() {

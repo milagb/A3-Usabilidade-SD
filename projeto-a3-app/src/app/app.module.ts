@@ -18,12 +18,14 @@ import { MatExpansionModule } from '@angular/material/expansion'
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DialogAnimationsExampleDialogComponent } from './dialog-example/dialog-example.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DialogAnimationsExampleDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,6 +33,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     RodapeModule,
     CabecalhoModule,
     TelaInicialModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,

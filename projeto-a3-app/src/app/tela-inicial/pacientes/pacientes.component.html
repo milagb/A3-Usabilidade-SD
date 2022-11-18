@@ -69,7 +69,7 @@
           <button mat-button [routerLink]="['/edit-pacientes/', element._id]">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button>
+          <button mat-button [value]="element._id" (click)="openDialog(element._id)">
             <mat-icon class="icon">delete_forever</mat-icon>
           </button>
         </td>

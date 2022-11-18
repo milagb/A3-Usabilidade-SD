@@ -75,7 +75,7 @@
           <button mat-button [routerLink]="['/edit-medicos/', element._id]">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-button>
+          <button mat-button [value]="element._id" (click)="openDialog(element._id)">
             <mat-icon class="icon">delete_forever</mat-icon>
           </button>
         </td>
@@ -87,3 +87,4 @@
     <span class="not-found" *ngIf="dataSource.length == 0" colspan="6">No Medicos Found</span>
   </div>
 </div>
+<lib-ng-toast></lib-ng-toast>

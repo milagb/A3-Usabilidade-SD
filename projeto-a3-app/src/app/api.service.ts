@@ -45,6 +45,10 @@ export class ApiService {
     return this.http.put(this.apiUrl + `/medicos/update` + `?id=${id}`, model);
   }  
 
+  deleteEmployeeById(model: any) {
+    return this.http.delete(this.apiUrl + `/medico/delete` + '?id=' + model);
+  }
+
   getEmployeeDetailById(id: string) {
     return this.http.get(this.apiUrl + '/medicos/getById' + '?Id=' + id);
   }
@@ -65,7 +69,11 @@ export class ApiService {
 
   updatePaciente(id: string, model: any) {
     return this.http.put(this.apiUrl + '/paciente/update' + `?id=${id}`, model);
-  }  
+  } 
+  
+  deletePaciente(model: any) {
+    return this.http.delete(this.apiUrl + `/paciente/delete` + '?id=' + model);
+  }
 
   getPacienteDetailById(id: string) {
     return this.http.get(this.apiUrl + '/paciente/getById' + '?Id=' + id);
@@ -89,7 +97,9 @@ export class ApiService {
     return this.http.get(this.apiUrl + '/consulta/getById' + '?Id=' + id);
   }
 
-
+  deleteConsulta(model: any) {
+    return this.http.delete(this.apiUrl + `/consulta/delete` + '?id=' + model);
+  }
 
 
 
