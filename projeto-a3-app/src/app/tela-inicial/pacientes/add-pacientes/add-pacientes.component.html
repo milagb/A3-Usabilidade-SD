@@ -13,7 +13,7 @@
   </div>
   
   <div class="content">
-      <form #clienteForm="" class="mat-elevation-z8">
+      <form #userData="ngForm" class="mat-elevation-z8" (ngSubmit)="AddPacientes(userData.value)">
   
       <div class="div-input">
         <br/><br/>
@@ -22,8 +22,9 @@
           type="text"
           matInput
           placeholder="Nome"
-          name="Nome"
+          name="firstname"
           ngModel
+          #firstname="ngModel"
           required
           minlength="2"/>
         <mat-error>Digite um nome válido</mat-error>
@@ -34,8 +35,9 @@
             type="text"
             matInput
             placeholder="Sobrenome"
-            name="Sobrenome"
+            name="lastname"
             ngModel
+            #lastname="ngModel"
             required
             minlength="2"/>
           <mat-error>Digite um Sobrenome válido</mat-error>
@@ -43,15 +45,15 @@
   
       <mat-form-field class="width-50">
           <mat-label>Sexo</mat-label>
-          <mat-select>
-            <mat-option value="option">F</mat-option>
-            <mat-option value="option">M</mat-option>
+          <mat-select name="sexo" ngModel #sexo="ngModel" required>
+            <mat-option value="F">F</mat-option>
+            <mat-option value="M">M</mat-option>
           </mat-select>
       </mat-form-field>
     
       <mat-form-field class="width-50 ml-2">
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" name="nascimento" ngModel #nascimento="ngModel" required>
             <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -62,8 +64,9 @@
           type="text"
           matInput
           placeholder="Celular"
-          name="Celular"
+          name="celular"
           ngModel
+          #celular="ngModel"
           required
           minlength="11"/>
         <mat-error>Digite um celular válido</mat-error>
@@ -75,7 +78,8 @@
           matInput
           placeholder="Telefone"
           ngModel
-          name="Telefone"
+          #telefone="ngModel"
+          name="telefone"
           required />
         <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
@@ -85,8 +89,9 @@
           type="text"
           matInput
           placeholder="CPF"
-          name="CPF"
+          name="cpf"
           ngModel
+          #cpf="ngModel"
           required
           minlength="11"/>
         <mat-error>Digite um cpf válido</mat-error>
@@ -97,7 +102,8 @@
           type="text"
           matInput
           placeholder="Email"
-          name="Email"
+          name="email"
+          #email="ngModel"
           ngModel
           required />
       </mat-form-field>
@@ -107,13 +113,22 @@
           type="text"
           matInput
           placeholder="Endereço"
-          name="Endereco"
+          name="endereco"
+          #endereco="ngModel"
           ngModel
           required />
       </mat-form-field>
-      </div>
+
+      <section class="example-section">
+        <mat-checkbox class="mat-chk" name="ativo" ngModel #ativo="ngModel">Ativo</mat-checkbox>
+      </section>
+
+      <mat-divider></mat-divider>
       <button mat-raised-button class="btn-agn">CONFIRMAR</button>
+      </div>
+      
     </form>
   </div>
+  <lib-ng-toast></lib-ng-toast>
   
   

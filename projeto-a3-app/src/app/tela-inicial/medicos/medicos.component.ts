@@ -1,27 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement {
-  nome: string;
-  crm: number;
-  sobrenome: string;
-  especialiidade: string;
-  email: string;
-  fone: string;
-  sexo: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {crm: 1, nome: 'Pamela', sobrenome: 'Martini', especialiidade: 'Pediatra', email: '@gmail.com', fone: '11 87892', sexo: 'F'},
-  {crm: 2, nome: 'Lucas', sobrenome: 'Lindo', especialiidade: 'Neurologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 3, nome: 'Lilith', sobrenome: 'Silva', especialiidade: 'Clinico Geral', email: '@gmail.com', fone: '11 87892', sexo: 'F'},
-  {crm: 4, nome: 'Berry', sobrenome: 'Alen', especialiidade: 'Oftalmologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-];
+import { ApiService } from "src/app/api.service";
+import { NgToastService } from 'ng-angular-popup'
+import {MatDialog} from '@angular/material/dialog';
+import { DialogAnimationsExampleDialogComponent }  from "src/app/dialog-example/dialog-example.component";
 
 @Component({
   selector: 'app-medicos',
@@ -30,12 +11,52 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class MedicosComponent implements OnInit {
 
-  displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'sexo', 'actions'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'uf', 'ativo', 'actions'];
+  dataSource: any = [];
 
-  constructor() { }
+  constructor(private apiService: ApiService, public dialog: MatDialog, private toast: NgToastService) { }
 
   ngOnInit(): void {
+    this.getAllEmployee();
+  }
+
+  openDialog(id: any) {
+    let dialogRef = this.dialog.open(DialogAnimationsExampleDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'true') {
+        console.log(`result: ${id}`)
+        console.log(`result: ${result}`)
+        this.apiService.deleteEmployeeById(id).subscribe(async data => {
+          console.log(`deletou: ${id}`)
+          this.getAllEmployee();
+        },
+          async error => {
+            this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          });
+      }
+    })
+  }
+
+  async getAllEmployee() {
+    this.apiService.getAllEmployee().subscribe((data : any) => {
+
+      if (data != null) {
+        var resultData = data;
+        if (resultData) {
+          this.dataSource = resultData;
+          console.log('3', this.dataSource);
+        }
+      }
+    },
+    (error : any)=> {
+        if (error) {
+          if (error.status == 404) {
+            if(error.error && error.error.message){
+              this.dataSource = [];
+            }
+          }
+        }
+      });
   }
 
 }

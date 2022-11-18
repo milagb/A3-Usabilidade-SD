@@ -1,1 +1,114 @@
-<p>view-pacientes works!</p>
+<div class="table-title">
+    <div class="row">
+      <div class="width-50">
+        <label class="lblGer"><b>PACIENTES &nbsp; > </b></label>
+          <label class="lblGer"><b>VISUALIZAR</b></label>
+        </div>
+      <div class="width-50 ml-2">
+          <button mat-raised-button class="btn" routerLink="/pacientes">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>  
+    </div>
+  </div>
+  
+  <div class="content">
+      <form #employeeForm="ngForm" class="mat-elevation-z8">
+  
+      <div class="div-input">
+        <br/><br/>
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="Nome"
+          name="Nome"
+          value="{{ pacienteDetail.firstname }}"
+          [disabled]="true"/>
+        <mat-error>Digite um nome válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+          <input
+            type="text"
+            matInput
+            placeholder="Sobrenome"
+            name="Sobrenome"
+            value="{{ pacienteDetail.lastname }}"
+            [disabled]="true"/>
+          <mat-error>Digite um Sobrenome válido</mat-error>
+        </mat-form-field>
+  
+      <mat-form-field class="width-50">
+          <mat-label>Sexo</mat-label>
+          <mat-select [(value)]="pacienteDetail.sexo" [disabled]="true">
+            <mat-option value="F">F</mat-option>
+            <mat-option value="M">M</mat-option>
+          </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="width-50 ml-2">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" [disabled]="true" value="{{ pacienteDetail.nascimento }}">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="Celular"
+          name="Celular"
+          value="{{ pacienteDetail.celular }}"
+          [disabled]="true"/>
+        <mat-error>Digite um celular válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+        <input
+          type="text"
+          matInput
+          placeholder="Telefone"
+          value="{{ pacienteDetail.telefone }}"
+          name="Telefone"
+          [disabled]="true"/>
+        <mat-error>Digite um Telefone válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50">
+        <input
+          type="text"
+          matInput
+          placeholder="CPF"
+          name="CPF"
+          value="{{ pacienteDetail.cpf }}"
+          [disabled]="true"/>
+        <mat-error>Digite um cpf válido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="width-50 ml-2">
+        <input
+          type="text"
+          matInput
+          placeholder="Email"
+          name="Email"
+          value="{{ pacienteDetail.email }}"
+          [disabled]="true"/>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <input
+          type="text"
+          matInput
+          placeholder="Endereço"
+          name="Endereco"
+          value="{{ pacienteDetail.endereco }}"
+          [disabled]="true" value="teste"/>
+      </mat-form-field>
+      </div>
+      <br/>
+      <br/>
+    </form>
+  </div>

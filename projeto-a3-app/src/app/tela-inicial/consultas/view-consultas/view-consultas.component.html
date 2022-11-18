@@ -1,1 +1,131 @@
-<p>view-consultas works!</p>
+<div class="table-title">
+    <div class="row">
+      <div class="width-50">
+        <label class="lblGer"><b>CONSULTAS &nbsp; > </b></label>
+          <label class="lblGer"><b>VISUALIZAR</b></label>
+        </div>
+      <div class="width-50 ml-2">
+          <button mat-raised-button class="btn" routerLink="/consultas">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>  
+    </div>
+  </div>
+  
+
+<div class="content">
+    <form #clienteForm="" class="mat-elevation-z8">
+
+    <div class="div-input">
+        <br/><br/>
+    <mat-form-field class="width-100">
+      <mat-label>Agenda</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Agenda"
+        name="Agenda"
+        value="{{ consultaDetail.agenda}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <mat-label>Especialidade</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Especialidade"
+        name="Especialidade"
+        value="{{ consultaDetail.occupation}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <mat-label>Médico</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Médico"
+        name="Medico"
+        value="{{ consultaDetail.medico}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <div class="example-container">
+      <mat-form-field class="width-50">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" [disabled]="true" value="{{ consultaDetail.data }}">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <mat-label>Horário</mat-label>
+        <input
+        type="text"
+        matInput
+        placeholder="Horario"
+        name="Horario"
+        value="{{ consultaDetail.horario}}"
+        [disabled]="true"/>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="width-100">
+      <input
+        type="text"
+        matInput
+        placeholder="Paciente"
+        name="Paciente"
+        value="{{ consultaDetail.paciente}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="Celular"
+        name="Celular"
+        value="{{ consultaDetail.celular}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Telefone"
+        value="{{ consultaDetail.telefone}}"
+        name="Telefone"
+        [disabled]="true" />
+    </mat-form-field>
+
+    <mat-form-field class="width-50">
+      <input
+        type="text"
+        matInput
+        placeholder="CPF"
+        name="CPF"
+        value="{{ consultaDetail.cpf}}"
+        [disabled]="true"/>
+    </mat-form-field>
+
+    <mat-form-field class="width-50 ml-2">
+      <input
+        type="text"
+        matInput
+        placeholder="Observações"
+        name="Observações"
+        value="{{ consultaDetail.observacoes}}"
+        [disabled]="true" />
+    </mat-form-field>
+
+    <section class="example-section">
+      <mat-checkbox class="mat-chk" [disabled]="true" [checked]="consultaDetail.retorno">Retorno</mat-checkbox>
+    </section>
+    </div>
+    <br/>
+  </form>
+</div>

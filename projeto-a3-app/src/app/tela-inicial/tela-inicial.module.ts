@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TelaInicialRoutingModule } from './tela-inicial-routing.module';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
@@ -36,6 +39,9 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { AddConsultasComponent } from './consultas/add-consultas/add-consultas.component';
 import { ViewConsultasComponent } from './consultas/view-consultas/view-consultas.component';
 import { EditConsultasComponent } from './consultas/edit-consultas/edit-consultas.component';
+import { NgToastModule } from 'ng-angular-popup'
+import { DatePipe } from '@angular/common';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 
 
@@ -60,6 +66,11 @@ import { EditConsultasComponent } from './consultas/edit-consultas/edit-consulta
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    NgxMatTimepickerModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     TelaInicialRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -76,10 +87,12 @@ import { EditConsultasComponent } from './consultas/edit-consultas/edit-consulta
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    NgToastModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class TelaInicialModule { }

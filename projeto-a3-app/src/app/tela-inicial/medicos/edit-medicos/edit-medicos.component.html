@@ -1,1 +1,91 @@
-<p>edit-medicos works!</p>
+<div class="table-title">
+  <div class="row">
+    <div class="width-50">
+      <label class="lblGer"><b>MÉDICOS &nbsp; > </b></label>
+      <label class="lblGer"><b>EDITAR</b></label>
+    </div>
+    <div class="width-50 ml-2">
+      <button mat-raised-button class="btn" routerLink="/medicos">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <form #employeeForm="ngForm" class="mat-elevation-z8">
+
+    <div class="div-input">
+      <br /><br />
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="Nome" name="firstname" [(ngModel)]="editEmployeeForm.firstname"
+          #firstname="ngModel" required minlength="2" />
+        <mat-error>Digite um nome válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <input type="text" matInput placeholder="Sobrenome" name="lastname" [(ngModel)]="editEmployeeForm.lastname"
+          #lastname="ngModel" required minlength="2" />
+        <mat-error>Digite um Sobrenome válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <mat-label>Especialidade</mat-label>
+        <mat-select name="occupation" [(ngModel)]="editEmployeeForm.occupation" #occupation="ngModel" required>
+          <mat-option value="Cardiologia">Cardiologia</mat-option>
+          <mat-option value="Dermatologia">Dermatologia</mat-option>
+          <mat-option value="Oftalmologia">Oftalmologia</mat-option>
+          <mat-option value="Ortopedia e Traumatologia">Ortopedia e Traumatologia</mat-option>
+          <mat-option value="Pediatra">Pediatra</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" name="Nascimento" [(ngModel)]="editEmployeeForm.nascimento"
+          #Nascimento="ngModel" required>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="Celular" name="Celular" [(ngModel)]="editEmployeeForm.celular"
+          #Celular="ngModel" required maxlength="11" pattern="^\d{3}\d{3}\d{4}$" />
+        <mat-error>Digite um celular válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <input type="text" matInput placeholder="Telefone" [(ngModel)]="editEmployeeForm.telefone" name="Telefone"
+          #Telefone="ngModel" />
+        <mat-error>Digite um Telefone válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="CRM" name="CRM" [(ngModel)]="editEmployeeForm.crm" #CRM="ngModel"
+          required minlength="11" />
+        <mat-error>Digite um crm válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <mat-label>UF</mat-label>
+        <mat-select name="UF" [(ngModel)]="editEmployeeForm.uf" #UF="ngModel" required>
+          <mat-option value="sp">SP</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="Email" name="Email" [(ngModel)]="editEmployeeForm.email"
+          #Email="ngModel" required pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,3}$" />
+      </mat-form-field>
+
+      <section class="example-section">
+        <mat-checkbox name="ativo" class="mat-chk" [(ngModel)]="editEmployeeForm.ativo" #ativo="ngModel">Ativo
+        </mat-checkbox>
+      </section>
+
+    </div>
+    <button mat-raised-button class="btn-agn" (click)="EditEmployee(employeeForm.form.valid)">CONFIRMAR</button>
+  </form>
+</div>
+<lib-ng-toast></lib-ng-toast>

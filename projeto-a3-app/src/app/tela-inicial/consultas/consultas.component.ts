@@ -1,27 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement {
-  nome: string;
-  crm: number;
-  sobrenome: string;
-  especialiidade: string;
-  email: string;
-  fone: string;
-  sexo: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {crm: 1, nome: 'Pamela', sobrenome: 'Martini', especialiidade: 'Pediatra', email: '@gmail.com', fone: '11 87892', sexo: 'F'},
-  {crm: 2, nome: 'Lucas', sobrenome: 'Lindo', especialiidade: 'Neurologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 3, nome: 'Lilith', sobrenome: 'Silva', especialiidade: 'Clinico Geral', email: '@gmail.com', fone: '11 87892', sexo: 'F'},
-  {crm: 4, nome: 'Berry', sobrenome: 'Alen', especialiidade: 'Oftalmologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-  {crm: 5, nome: 'Boron', sobrenome: 'Alves', especialiidade: 'Nefrologista', email: '@gmail.com', fone: '11 87892', sexo: 'M'},
-];
+import { ApiService } from "src/app/api.service";
+import { DateAdapter } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { NgToastService } from 'ng-angular-popup';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAnimationsExampleDialogComponent }  from "src/app/dialog-example/dialog-example.component";
 
 @Component({
   selector: 'app-consultas',
@@ -30,12 +13,63 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ConsultasComponent implements OnInit {
 
-  displayedColumns: string[] = ['crm', 'nome', 'sobrenome', 'especialiidade', 'email', 'fone', 'sexo', 'actions'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['agenda', 'especialidade', 'medico', 'data', 'horario', 'paciente', 'cpf', 'retorno', 'actions'];
+  dataSource = [];
+  result: any;
 
-  constructor() { }
+  constructor(private apiService: ApiService, private dateAdapter: DateAdapter<Date>, private datePipe: DatePipe, public dialog: MatDialog, private toast: NgToastService) {
+    this.dateAdapter.setLocale('en-GB'); 
+   }
 
   ngOnInit(): void {
+    this.getAllConsulta();
+  }
+
+  openDialog(id: any) {
+    let dialogRef = this.dialog.open(DialogAnimationsExampleDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'true') {
+        console.log(`result: ${id}`)
+        console.log(`result: ${result}`)
+        this.apiService.deleteConsulta(id).subscribe(async data => {
+          console.log(`deletou: ${id}`)
+          this.getAllConsulta();
+        },
+          async error => {
+            this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          });
+      }
+    })
+  }
+
+  async getAllConsulta() {
+    this.apiService.getAllConsulta().subscribe((data : any) => {
+
+      if (data != null) {
+        var resultData = data;
+        if (resultData) {
+          this.dataSource = resultData;
+          console.log('3', this.dataSource);
+
+          for (let index = 0; index < this.dataSource.length; index++) {
+            this.result = this.dataSource[index];
+            this.result.data = this.datePipe.transform(this.result.data,"dd/MM/yyyy");
+          }
+
+          console.log(this.result)
+          
+        }
+      }
+    },
+    (error : any)=> {
+        if (error) {
+          if (error.status == 404) {
+            if(error.error && error.error.message){
+              this.dataSource = [];
+            }
+          }
+        }
+      });
   }
 
 }

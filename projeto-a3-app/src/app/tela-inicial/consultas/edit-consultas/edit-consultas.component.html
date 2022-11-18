@@ -1,1 +1,107 @@
-<p>edit-consultas works!</p>
+<div class="table-title">
+  <div class="row">
+    <div class="width-50">
+      <label class="lblGer"><b>CONSULTAS &nbsp; > </b></label>
+      <label class="lblGer"><b>EDITAR</b></label>
+    </div>
+    <div class="width-50 ml-2">
+      <button mat-raised-button class="btn" routerLink="/consultas">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="content">
+  <form #consultaForm="ngForm" class="mat-elevation-z8">
+
+    <div class="div-input">
+      <br /><br />
+      <mat-form-field class="width-100">
+        <mat-label>Agenda</mat-label>
+        <mat-select name="agenda" [(ngModel)]="editConsultaForm.agenda" #agenda="ngModel" required>
+          <mat-option *ngFor="let agenda of agendas" [value]="agenda.value">
+            {{agenda.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <mat-label>Especialidade</mat-label>
+        <mat-select name="occupation" [(ngModel)]="editConsultaForm.occupation" #occupation="ngModel" (selectionChange)="occupationChange()">
+          <mat-option value="Cardiologia">Cardiologia</mat-option>
+          <mat-option value="Dermatologia">Dermatologia</mat-option>
+          <mat-option value="Oftalmologia">Oftalmologia</mat-option>
+          <mat-option value="Ortopedia e Traumatologia">Ortopedia e Traumatologia</mat-option>
+          <mat-option value="Pediatra">Pediatra</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <mat-label>Médico</mat-label>
+        <mat-select name="medico" [(ngModel)]="editConsultaForm.medico" #medico="ngModel" required>
+          <mat-option *ngFor="let medico of medicos" [value]="medico.value">
+            {{medico.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="example-container">
+        <mat-form-field class="width-50">
+          <mat-label>Data</mat-label>
+          <input matInput [matDatepicker]="picker" name="data" [(ngModel)]="editConsultaForm.data" #data="ngModel">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="width-50 ml-2">
+          <mat-label>Horário</mat-label>
+          <input matInput name="horario" [(ngModel)]="editConsultaForm.horario" #horario="ngModel" required
+                 [format]="24"
+                 [ngxMatTimepicker]="pickerB"
+                 placeholder="Horário"
+                 readonly />
+          <mat-icon matSuffix
+                    (click)="pickerB.open()">
+              watch_later
+          </mat-icon>
+      </mat-form-field>
+      <ngx-mat-timepicker color="primary" #pickerB></ngx-mat-timepicker>
+      </div>
+
+      <mat-form-field class="width-100">
+        <input type="text" matInput placeholder="Paciente" name="paciente" [(ngModel)]="editConsultaForm.paciente" #paciente="ngModel" required minlength="2" />
+        <mat-error>Digite um nome válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="Celular" name="celular" name="celular" [(ngModel)]="editConsultaForm.celular" #celular="ngModel" required minlength="11" />
+        <mat-error>Digite um celular válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <input type="text" matInput placeholder="Telefone" name="telefone" [(ngModel)]="editConsultaForm.telefone" #telefone="ngModel" required />
+        <mat-error>Digite um Telefone válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50">
+        <input type="text" matInput placeholder="CPF" name="cpf" [(ngModel)]="editConsultaForm.cpf" #cpf="ngModel" required minlength="11" />
+        <mat-error>Digite um cpf válido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-50 ml-2">
+        <input type="text" matInput placeholder="Observações" name="observacoes" [(ngModel)]="editConsultaForm.observacoes" #observacoes="ngModel" ngModel required />
+      </mat-form-field>
+
+      <section class="example-section">
+        <mat-checkbox name="retorno" class="mat-chk" [(ngModel)]="editConsultaForm.retorno" #retorno="ngModel">Retorno</mat-checkbox>
+      </section>
+
+      <mat-divider></mat-divider>
+    </div>
+    <button mat-raised-button class="btn-agn" (click)="EditConsulta(consultaForm.form.valid)">AGENDAR</button>
+  </form>
+</div>
+<lib-ng-toast></lib-ng-toast>
