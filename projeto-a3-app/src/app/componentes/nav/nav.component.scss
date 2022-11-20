@@ -15,7 +15,8 @@ mat-sidenav {
 }
 
 .content {
-    height: calc(100vh - 98px);
+    min-height: calc(100vh - 98px);
+    max-width: auto;
     margin: 16px;
     margin-left: 32px;
     //display: flex;

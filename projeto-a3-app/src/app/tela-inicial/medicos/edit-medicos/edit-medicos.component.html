@@ -117,8 +117,11 @@
         </mat-checkbox>
       </section>
 
+      <mat-divider></mat-divider>
+
+      <button mat-raised-button class="btn-agn" (click)="EditEmployee(employeeForm.form.valid)">CONFIRMAR</button>
     </div>
-    <button mat-raised-button class="btn-agn" (click)="EditEmployee(employeeForm.form.valid)">CONFIRMAR</button>
   </form>
+  <br/>
 </div>
 <lib-ng-toast></lib-ng-toast>

@@ -20,19 +20,19 @@
                 The actual rendered columns are set as a property on the row definition" -->
       <!-- Position Column -->
       <ng-container matColumnDef="crm">
-        <th mat-header-cell *matHeaderCellDef> CRM. </th>
+        <th mat-header-cell *matHeaderCellDef width="10%"> CRM. </th>
         <td mat-cell *matCellDef="let element"> {{element.crm}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <th mat-header-cell *matHeaderCellDef width="10%"> Nome </th>
         <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="sobrenome">
-        <th mat-header-cell *matHeaderCellDef> Sobrenome </th>
+        <th mat-header-cell *matHeaderCellDef width="10%"> Sobrenome </th>
         <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
       </ng-container>
 
@@ -50,19 +50,19 @@
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="fone">
-        <th mat-header-cell *matHeaderCellDef> Celular </th>
+        <th mat-header-cell *matHeaderCellDef width="12%"> Celular </th>
         <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="uf">
-        <th mat-header-cell *matHeaderCellDef> UF </th>
+        <th mat-header-cell *matHeaderCellDef width="5%"> UF </th>
         <td mat-cell *matCellDef="let element"> {{element.uf}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="ativo">
-        <th mat-header-cell *matHeaderCellDef> Ativo </th>
+        <th mat-header-cell *matHeaderCellDef width="5%"> Ativo </th>
         <td mat-cell *matCellDef="let element"> <mat-checkbox class="mat-chk" checked="{{ element.ativo }}" [disabled]="true"></mat-checkbox> </td>
       </ng-container>
 
@@ -87,4 +87,5 @@
     <span class="not-found" *ngIf="dataSource.length == 0" colspan="6">Nenhum médico encontrado</span>
   </div>
 </div>
+<br><br>
 <lib-ng-toast></lib-ng-toast>

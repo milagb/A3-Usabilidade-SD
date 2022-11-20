@@ -86,8 +86,12 @@
         <mat-checkbox name="ativo" class="mat-chk" [(ngModel)]="editPacienteForm.ativo" #ativo="ngModel">Ativo
         </mat-checkbox>
       </section>
+      
+      <mat-divider></mat-divider>
+
+      <button mat-raised-button class="btn-agn" (click)="EditPaciente(pacienteForm.form.valid)">CONFIRMAR</button>
     </div>
-    <button mat-raised-button class="btn-agn" (click)="EditPaciente(pacienteForm.form.valid)">CONFIRMAR</button>
   </form>
 </div>
+<br>
 <lib-ng-toast></lib-ng-toast>

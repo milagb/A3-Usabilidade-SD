@@ -20,25 +20,25 @@
                 The actual rendered columns are set as a property on the row definition" -->
       <!-- Position Column -->
       <ng-container matColumnDef="cpf">
-        <th mat-header-cell *matHeaderCellDef> CPF. </th>
+        <th mat-header-cell *matHeaderCellDef width="15%"> CPF. </th>
         <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <th mat-header-cell *matHeaderCellDef width="10%"> Nome </th>
         <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="sobrenome">
-        <th mat-header-cell *matHeaderCellDef> Sobrenome </th>
+        <th mat-header-cell *matHeaderCellDef width="10%"> Sobrenome </th>
         <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="endereco">
-        <th mat-header-cell *matHeaderCellDef> Endereco </th>
+        <th mat-header-cell *matHeaderCellDef width="12%"> Endereco </th>
         <td mat-cell *matCellDef="let element"> {{element.endereco}} </td>
       </ng-container>
 
@@ -50,19 +50,19 @@
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="fone">
-        <th mat-header-cell *matHeaderCellDef> Celular </th>
+        <th mat-header-cell *matHeaderCellDef width="12%"> Celular </th>
         <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="sexo">
-        <th mat-header-cell *matHeaderCellDef> Sexo </th>
+        <th mat-header-cell *matHeaderCellDef width="5%"> Sexo </th>
         <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="ativo">
-        <th mat-header-cell *matHeaderCellDef> Ativo </th>
+        <th mat-header-cell *matHeaderCellDef width="5%"> Ativo </th>
         <td mat-cell *matCellDef="let element"> <mat-checkbox class="mat-chk" checked="{{ element.ativo }}" [disabled]="true"></mat-checkbox> </td>
       </ng-container>
 
@@ -87,3 +87,4 @@
     <span class="not-found" *ngIf="dataSource.length == 0" colspan="6">Nenhum paciente encontrado</span>
   </div>
 </div>
+<br><br>
