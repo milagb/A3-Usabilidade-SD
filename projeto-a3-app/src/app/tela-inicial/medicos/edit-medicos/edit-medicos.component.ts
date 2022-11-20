@@ -37,21 +37,25 @@ export class EditMedicosComponent implements OnInit {
     this.apiService.getEmployeeDetailById(this.Id).subscribe((data: any) => {
       console.log(data);
       if (data != null) {
-        var resultData = data;
-        console.log('resultData: ', resultData.uf)
-        if (resultData) {
-          //this.employeeForm.Id = resultData.id;
-          this.editEmployeeForm.firstname = resultData.firstname;
-          this.editEmployeeForm.lastname = resultData.lastname;
-          this.editEmployeeForm.email = resultData.email;
-          this.editEmployeeForm.occupation = resultData.occupation;
-          this.editEmployeeForm.nascimento = resultData.nascimento;
-          this.editEmployeeForm.celular = resultData.celular;
-          this.editEmployeeForm.telefone = resultData.telefone;
-          this.editEmployeeForm.crm = resultData.crm;
-          this.editEmployeeForm.uf = resultData.uf;
-          this.editEmployeeForm.email = resultData.email;
-          this.editEmployeeForm.ativo = resultData.ativo;
+        var resultData = data.response;
+        console.log('resultData: ', resultData)
+        for (let index = 0; index < resultData.length; index++) {
+          const element = resultData[index];
+          if (resultData) {
+            //this.employeeForm.Id = resultData.id;
+            this.editEmployeeForm.firstname = element.firstname;
+            this.editEmployeeForm.lastname = element.lastname;
+            this.editEmployeeForm.email = element.email;
+            this.editEmployeeForm.occupation = element.occupation;
+            this.editEmployeeForm.nascimento = element.nascimento;
+            this.editEmployeeForm.celular = element.celular;
+            this.editEmployeeForm.telefone = element.telefone;
+            this.editEmployeeForm.crm = element.crm;
+            this.editEmployeeForm.uf = element.uf;
+            this.editEmployeeForm.email = element.email;
+            this.editEmployeeForm.ativo = element.ativo;
+          }
+          
         }
       }
     },

@@ -50,27 +50,29 @@ export class EditConsultasComponent implements OnInit {
 
   getConsultaDetailById() {
     this.apiService.getConsultaDetailById(this.consultaId).subscribe((data: any) => {
-      console.log(data);
+      console.log('data',data.response);
       if (data != null) {
-        var resultData = data;
-        console.log('resultData: ', resultData.uf)
-        if (resultData) {
-          //this.employeeForm.Id = resultData.id;
-          this.editConsultaForm.agenda = resultData.agenda;
-          this.editConsultaForm.occupation = resultData.occupation;
-          this.editConsultaForm.medico = resultData.medico;
-          this.editConsultaForm.data = resultData.data;
-          this.editConsultaForm.horario = resultData.horario;
-          this.editConsultaForm.paciente = resultData.paciente;
-          this.editConsultaForm.celular = resultData.celular;
-          this.editConsultaForm.telefone = resultData.telefone;
-          this.editConsultaForm.cpf = resultData.cpf;
-          this.editConsultaForm.observacoes = resultData.observacoes;
-          this.editConsultaForm.retorno = resultData.retorno;
+        var resultData = data.response;
+        for (let index = 0; index < resultData.length; index++) {
+          const element = resultData[index];
+          if (resultData) {
+            console.log('data',element.medico);
+            //this.employeeForm.Id = resultData.id;
+            this.editConsultaForm.agenda = element.agenda;
+            this.editConsultaForm.occupation = element.occupation;
+            this.editConsultaForm.medico = element.medico;
+            this.editConsultaForm.data = element.data;
+            this.editConsultaForm.horario = element.horario;
+            this.editConsultaForm.paciente = element.paciente;
+            this.editConsultaForm.celular = element.celular;
+            this.editConsultaForm.telefone = element.telefone;
+            this.editConsultaForm.cpf = element.cpf;
+            this.editConsultaForm.observacoes = element.observacoes;
+            this.editConsultaForm.retorno = element.retorno;
+          }
         }
+        this.getEmployeeDetailByOccupation(this.editConsultaForm.occupation);
       }
-
-      this.getEmployeeDetailByOccupation(this.editConsultaForm.occupation);
     },
       (error: any) => { });
   }
@@ -104,10 +106,12 @@ export class EditConsultasComponent implements OnInit {
     this.apiService.getEmployeeDetailByOccupation(occ).subscribe((data : any) => {    
       this.medicos = []  
 
+      data = data.response
+
       for (let index = 0; index < data.length; index++) {
         const element = data[index];
         let nome = element.firstname + ' ' + element.lastname
-
+        console.log('nome', nome);
         this.medicos.push({
           value: nome,
           viewValue: nome
@@ -118,6 +122,7 @@ export class EditConsultasComponent implements OnInit {
   }
 
   occupationChange(){
+    console.log('popopo',this.editConsultaForm.occupation);
     this.getEmployeeDetailByOccupation(this.editConsultaForm.occupation)
   }
 

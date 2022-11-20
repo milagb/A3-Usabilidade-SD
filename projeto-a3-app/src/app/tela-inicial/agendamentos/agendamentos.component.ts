@@ -35,7 +35,7 @@ export class AgendamentosComponent {
   empList: Array<Agenda> = [];
 
   agendas: Agenda[] = [
-    {start: new Date('Nov 17 2022 16:00'), title: 'Lucas Lindo - Clinico Geral - 16:00 - Doc. Mathias Bezerra'},
+    {start: new Date('Nov 17 2022 16:00'), title: 'Lucas Lindo: Clinico Geral - 16:00 - Doc. Mathias Bezerra'},
     {start: new Date('Nov 17 2022 10:00'), title: 'Teste 2'},
     {start: new Date('Nov 17 2022 13:00'), title: 'Teste 3'},
   ];
@@ -104,7 +104,7 @@ export class AgendamentosComponent {
     this.apiService.getAllConsulta().subscribe((data: any) => {
 
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         let start;
 
         for (let index = 0; index < resultData.length; index++) {
@@ -121,7 +121,7 @@ export class AgendamentosComponent {
 
           this.empList.push({
             start: start,
-            title: this.name + ' - ' + this.time + ' - ' + this.occupation + ' - ' + this.doctor
+            title: this.name + ': ' + this.time + ' | ' + ' Dr. ' + this.doctor + ' - ' + this.occupation
           });
 
         }

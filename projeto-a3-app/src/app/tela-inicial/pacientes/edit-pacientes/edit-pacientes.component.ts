@@ -35,21 +35,22 @@ export class EditPacientesComponent implements OnInit {
     this.apiService.getPacienteDetailById(this.pacienteId).subscribe((data: any) => {
       console.log(data);
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         console.log('resultData: ', resultData)
         if (resultData) {
-          //this.employeeForm.Id = resultData.id;
-          this.editPacienteForm.firstname = resultData.firstname;
-          this.editPacienteForm.lastname = resultData.lastname;
-          this.editPacienteForm.email = resultData.email;
-          this.editPacienteForm.sexo = resultData.sexo;
-          this.editPacienteForm.nascimento = resultData.nascimento;
-          this.editPacienteForm.celular = resultData.celular;
-          this.editPacienteForm.telefone = resultData.telefone;
-          this.editPacienteForm.cpf = resultData.cpf;
-          this.editPacienteForm.endereco = resultData.endereco;
-          this.editPacienteForm.email = resultData.email;
-          this.editPacienteForm.ativo = resultData.ativo;
+          for (let index = 0; index < resultData.length; index++) {
+            const element = resultData[index];
+            this.editPacienteForm.firstname = element.firstname;
+            this.editPacienteForm.lastname = element.lastname;
+            this.editPacienteForm.email = element.email;
+            this.editPacienteForm.sexo = element.sexo;
+            this.editPacienteForm.nascimento = element.nascimento;
+            this.editPacienteForm.celular = element.celular;
+            this.editPacienteForm.telefone = element.telefone;
+            this.editPacienteForm.cpf = element.cpf;
+            this.editPacienteForm.endereco = element.endereco;
+            this.editPacienteForm.ativo = element.ativo;
+          }
         }
       }
     },
@@ -64,7 +65,7 @@ export class EditPacientesComponent implements OnInit {
           var resultData = data;
           if (resultData != null) {
             if (resultData != null) {
-              this.toast.success({detail:"Success Message",summary: 'Paciente updated successfully', duration:5000})
+              this.toast.success({detail:"Mensagem de sucesso",summary: 'Paciente atualizado com sucesso', duration:5000})
               setTimeout(() => {
                 this.router.navigate(['/pacientes']);
               }, 500);
@@ -73,7 +74,7 @@ export class EditPacientesComponent implements OnInit {
         }
       },
         async error => {
-          this.toast.error({detail:"Error Message",summary: error, duration:5000})
+          this.toast.error({detail:"Mensagem de erro",summary: error, duration:5000})
           setTimeout(() => {
             this.router.navigate(['/pacientes']);
           }, 5000);

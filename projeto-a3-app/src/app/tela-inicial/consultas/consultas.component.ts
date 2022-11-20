@@ -13,7 +13,7 @@ import { DialogAnimationsExampleDialogComponent }  from "src/app/dialog-example/
 })
 export class ConsultasComponent implements OnInit {
 
-  displayedColumns: string[] = ['agenda', 'especialidade', 'medico', 'data', 'horario', 'paciente', 'cpf', 'retorno', 'actions'];
+  displayedColumns: string[] = ['agenda', 'medico', 'especialidade', 'data', 'horario', 'paciente', 'cpf', 'retorno', 'actions'];
   dataSource = [];
   result: any;
 
@@ -46,7 +46,7 @@ export class ConsultasComponent implements OnInit {
     this.apiService.getAllConsulta().subscribe((data : any) => {
 
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         if (resultData) {
           this.dataSource = resultData;
           console.log('3', this.dataSource);

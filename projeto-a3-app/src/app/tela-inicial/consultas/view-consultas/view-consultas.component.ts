@@ -25,10 +25,23 @@ export class ViewConsultasComponent implements OnInit {
   getConsultaDetailById() {       
     this.apiService.getConsultaDetailById(this.consultaId).subscribe((data : any) => {      
       console.log('data', data);
+      data = data.response
       if (data != null) {
         var resultData = data;
         if (resultData) {
-          this.consultaDetail = resultData;
+          for (let index = 0; index < resultData.length; index++) {
+            const element = resultData[index];
+            this.consultaDetail.agenda = element.agenda;
+            this.consultaDetail.medico = element.medico;
+            this.consultaDetail.data = element.data;
+            this.consultaDetail.occupation = element.occupation;
+            this.consultaDetail.horario = element.horario;
+            this.consultaDetail.celular = element.celular;
+            this.consultaDetail.telefone = element.telefone;
+            this.consultaDetail.cpf = element.cpf;
+            this.consultaDetail.observacoes = element.observacoes;
+            this.consultaDetail.retorno = element.retorno;
+          }
         }
       }
     },

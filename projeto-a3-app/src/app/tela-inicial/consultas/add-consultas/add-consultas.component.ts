@@ -29,12 +29,6 @@ export class AddConsultasComponent implements OnInit {
   @ViewChild("consultaForm")
   consultaForm!: NgForm;
 
-  agendas: Agenda[] = [
-    {value: 'Agenda-1', viewValue: 'Agenda-1'},
-    {value: 'Agenda-2', viewValue: 'Agenda-2'},
-    {value: 'Agenda-3', viewValue: 'Agenda-3'},
-  ];
-
   medicos: Array<Medico> = [];
 
   constructor(private apiService: ApiService, private router: Router, private toast: NgToastService) { }
@@ -44,13 +38,18 @@ export class AddConsultasComponent implements OnInit {
 
   AddConsulta(consulta: any) {
     this.isSubmitted = true;
+
+    if (consulta.retorno == '') {
+      consulta.retorno = false
+    }
+
     if (consulta) {
       this.apiService.saveConsulta(consulta).subscribe(async data => {
         this.result = data
         console.log(this.result)
         if (data != null) {
-          if (this.result.status == 200) {
-            this.toast.success({ detail: "Success Message", summary: 'Consulta registered successfully', duration: 5000 })
+          if (this.result.message == 'consulta created successfully!') {
+            this.toast.success({ detail: "Mensagem de sucesso", summary: 'Consulta cadastrada com sucesso', duration: 5000 })
             setTimeout(() => {
               this.router.navigate(['/consultas']);
             }, 800);
@@ -58,7 +57,7 @@ export class AddConsultasComponent implements OnInit {
         }
       },
         async error => {
-          this.toast.error({detail:"Error Message",summary: "Failed to add consulta", duration:5000})
+          this.toast.error({detail:"Mensagem de erro",summary: "Falha ao adicionar consulta", duration:5000})
           setTimeout(() => {
             //this.router.navigate(['/consulta']);
           }, 500);
@@ -69,11 +68,11 @@ export class AddConsultasComponent implements OnInit {
   getEmployeeDetailByOccupation(occ: any) {       
     this.apiService.getEmployeeDetailByOccupation(occ).subscribe((data : any) => {    
       this.medicos = []  
-
+      data= data.response
       for (let index = 0; index < data.length; index++) {
         const element = data[index];
         let nome = element.firstname + ' ' + element.lastname
-
+        
         this.medicos.push({
           value: nome,
           viewValue: nome

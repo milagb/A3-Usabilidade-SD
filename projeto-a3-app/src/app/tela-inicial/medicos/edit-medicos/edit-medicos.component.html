@@ -19,13 +19,15 @@
       <br /><br />
       <mat-form-field class="width-50">
         <input type="text" matInput placeholder="Nome" name="firstname" [(ngModel)]="editEmployeeForm.firstname"
-          #firstname="ngModel" required minlength="2" />
+          #firstname="ngModel" required pattern="[a-zA-Z ]*"
+          minlength="2" />
         <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
         <input type="text" matInput placeholder="Sobrenome" name="lastname" [(ngModel)]="editEmployeeForm.lastname"
-          #lastname="ngModel" required minlength="2" />
+          #lastname="ngModel" required pattern="[a-zA-Z ]*"
+          minlength="2" />
         <mat-error>Digite um Sobrenome válido</mat-error>
       </mat-form-field>
 
@@ -51,26 +53,57 @@
 
       <mat-form-field class="width-50">
         <input type="text" matInput placeholder="Celular" name="Celular" [(ngModel)]="editEmployeeForm.celular"
-          #Celular="ngModel" required maxlength="11" pattern="^\d{3}\d{3}\d{4}$" />
+          #Celular="ngModel" required pattern="^[0-9-]*$"
+          minlength="11"
+          maxlength="11" />
         <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
         <input type="text" matInput placeholder="Telefone" [(ngModel)]="editEmployeeForm.telefone" name="Telefone"
-          #Telefone="ngModel" />
+          #Telefone="ngModel" required pattern="^[0-9-]*$"
+          minlength="10"
+          maxlength="10"/>
         <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50">
         <input type="text" matInput placeholder="CRM" name="CRM" [(ngModel)]="editEmployeeForm.crm" #CRM="ngModel"
-          required minlength="11" />
+          required maxlength="6" minlength="6"
+          pattern="^[0-9-]*$" />
         <mat-error>Digite um crm válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
         <mat-label>UF</mat-label>
         <mat-select name="UF" [(ngModel)]="editEmployeeForm.uf" #UF="ngModel" required>
-          <mat-option value="sp">SP</mat-option>
+          <mat-option value="AC">AC</mat-option>
+          <mat-option value="AL">AL</mat-option>
+          <mat-option value="AP">AP</mat-option>
+          <mat-option value="AM">AM</mat-option>
+          <mat-option value="BA">BA</mat-option>
+          <mat-option value="CE">CE</mat-option>
+          <mat-option value="DF">DF</mat-option>
+          <mat-option value="ES">ES</mat-option>
+          <mat-option value="GO">GO</mat-option>
+          <mat-option value="MA">MA</mat-option>
+          <mat-option value="MT">MT</mat-option>
+          <mat-option value="MS">MS</mat-option>
+          <mat-option value="MG">MG</mat-option>
+          <mat-option value="PA">PA</mat-option>
+          <mat-option value="PB">PB</mat-option>
+          <mat-option value="PR">PR</mat-option>
+          <mat-option value="PE">PE</mat-option>
+          <mat-option value="PI">PI</mat-option>
+          <mat-option value="RJ">RJ</mat-option>
+          <mat-option value="RN">RN</mat-option>
+          <mat-option value="RS">RS</mat-option>
+          <mat-option value="RO">RO</mat-option>
+          <mat-option value="RR">RR</mat-option>
+          <mat-option value="SC">SC</mat-option>
+          <mat-option value="SP">SP</mat-option>
+          <mat-option value="SE">SE</mat-option>
+          <mat-option value="TO">TO</mat-option>
         </mat-select>
       </mat-form-field>
 

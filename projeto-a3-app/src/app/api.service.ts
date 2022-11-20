@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup'
@@ -10,100 +10,123 @@ export class ApiService {
 
   constructor(private http: HttpClient, private router: Router, private toast: NgToastService) { }
 
-  apiUrl = 'http://localhost:3000'
+  apiLocal = 'http://localhost:3000'
+  apiUrl = 'https://teste-usuabilidade-7qy2kubfgq-uc.a.run.app'
+
+  token = 'Bearer ' + sessionStorage.getItem('token');
+
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': this.token });
+    
+  options = { headers: this.headers };
 
   //--------------------------USER-----------------------------------------------------------
 
   registerUser(user: any){
-    this.http.post(this.apiUrl + '/user/register', user).subscribe(res => {
-      this.toast.success({detail:"Success Message",summary:"User registered successfully", duration:5000})
-    }, err =>{
-      console.log(err);
-      this.toast.error({detail:"Registration Failed",summary:"Email already exist!", duration:5000});
-    })
-  }
-
-  getUserDetailById(id: string) {
-    return this.http.get(this.apiUrl + '/user/getById' + '?Id=' + id);
+    return this.http.post(this.apiUrl + '/user/register', user, this.options);
   }
 
   loginUser(credentials: any){
-    return this.http.post(this.apiUrl + '/users/login', credentials);
+    return this.http.post(this.apiUrl + '/user/login', credentials);
   }
 
   //----------------------------MEDICO---------------------------------------------------------
 
   getAllEmployee(){
-    return this.http.get(this.apiUrl + '/medico/list');
+    return this.http.post(this.apiUrl + '/medico/list', {}, this.options);
   }
 
   saveEmployee(model: any) {
-    return this.http.post(this.apiUrl + '/medico/register', model);
+    return this.http.post(this.apiUrl + '/medico/add', model, this.options);
   }  
 
   updateEmployee(id: string, model: any) {
-    return this.http.put(this.apiUrl + `/medicos/update` + `?id=${id}`, model);
+    model.medicoID = id
+    return this.http.put(this.apiUrl + `/medico/update`, model, this.options);
   }  
 
   deleteEmployeeById(model: any) {
-    return this.http.delete(this.apiUrl + `/medico/delete` + '?id=' + model);
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+      }),
+      body: {
+        medicoID: model
+      },
+    };
+    return this.http.delete(this.apiUrl + `/medico/delete`, options);
   }
 
   getEmployeeDetailById(id: string) {
-    return this.http.get(this.apiUrl + '/medicos/getById' + '?Id=' + id);
+    return this.http.post(this.apiUrl + '/medico/list', {_id: id}, this.options);
   }
 
   getEmployeeDetailByOccupation(occ: string) {
-    return this.http.get(this.apiUrl + '/medicos/getByOcc' + '?occupation=' + occ);
+    return this.http.post(this.apiUrl + '/medico/list', {occupation: occ}, this.options);
   }
 
   //------------------------------PACIENTE-------------------------------------------------------
 
   getAllPaciente(){
-    return this.http.get(this.apiUrl + '/paciente/list');
+    return this.http.post(this.apiUrl + '/paciente/list', {}, this.options);
   }
 
   savePaciente(model: any) {
-    return this.http.post(this.apiUrl + '/paciente/register', model);
+    return this.http.post(this.apiUrl + '/paciente/add', model, this.options);
   }  
 
   updatePaciente(id: string, model: any) {
-    return this.http.put(this.apiUrl + '/paciente/update' + `?id=${id}`, model);
+    model.pacienteID = id
+    return this.http.put(this.apiUrl + '/paciente/update', model, this.options);
   } 
   
   deletePaciente(model: any) {
-    return this.http.delete(this.apiUrl + `/paciente/delete` + '?id=' + model);
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+      }),
+      body: {
+        pacienteID: model
+      },
+    };
+    return this.http.delete(this.apiUrl + `/paciente/delete`, options);
   }
 
   getPacienteDetailById(id: string) {
-    return this.http.get(this.apiUrl + '/paciente/getById' + '?Id=' + id);
+    return this.http.post(this.apiUrl + '/paciente/list', {id: id}, this.options);
   }
 
  //-----------------------------------CONSULTA--------------------------------------------------
 
  getAllConsulta(){
-    return this.http.get(this.apiUrl + '/consulta/list');
+    return this.http.post('https://teste-usuabilidade-7qy2kubfgq-uc.a.run.app/consulta/list', {}, this.options);
   }
 
   saveConsulta(model: any) {
-    return this.http.post(this.apiUrl + '/consulta/register', model);
+    return this.http.post(this.apiUrl + '/consulta/add', model, this.options);
   }  
 
   updateConsulta(id: string, model: any) {
-    return this.http.put(this.apiUrl + `/consulta/update` + `?id=${id}`, model);
+    model.consultaID = id
+    return this.http.put(this.apiUrl + `/consulta/update`, model, this.options);
   }  
 
   getConsultaDetailById(id: string) {
-    return this.http.get(this.apiUrl + '/consulta/getById' + '?Id=' + id);
+    return this.http.post(this.apiUrl + '/consulta/list', {_id: id}, this.options);
   }
 
   deleteConsulta(model: any) {
-    return this.http.delete(this.apiUrl + `/consulta/delete` + '?id=' + model);
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': this.token,
+      }),
+      body: {
+        consultaID: model
+      },
+    };
+    return this.http.delete(this.apiUrl + `/consulta/delete`, options);
   }
-
-
-
-
 
   // registerMedicos(medico: any){
   //   this.http.post('http://localhost:3000/medico/register', medico).subscribe(res => {

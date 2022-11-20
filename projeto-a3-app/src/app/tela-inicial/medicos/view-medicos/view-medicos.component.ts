@@ -23,11 +23,25 @@ export class ViewMedicosComponent implements OnInit {
 
   getEmployeeDetailById() {       
     this.apiService.getEmployeeDetailById(this.employeeId).subscribe((data : any) => {      
-      console.log('data', data);
+      console.log('data', data.response);
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         if (resultData) {
-          this.employeeDetail = resultData;
+          for (let index = 0; index < resultData.length; index++) {
+            const element = resultData[index];
+            this.employeeDetail.firstname = element.firstname;
+            this.employeeDetail.lastname = element.lastname;
+            this.employeeDetail.email = element.email;
+            this.employeeDetail.occupation = element.occupation;
+            this.employeeDetail.nascimento = element.nascimento;
+            this.employeeDetail.celular = element.celular;
+            this.employeeDetail.telefone = element.telefone;
+            this.employeeDetail.crm = element.crm;
+            this.employeeDetail.uf = element.uf;
+            this.employeeDetail.email = element.email;
+            this.employeeDetail.ativo = element.ativo;
+          }
+          console.log('data', this.employeeDetail.occupation);
         }
       }
     },

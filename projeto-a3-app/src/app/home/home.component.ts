@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   senha='';
   teste=[];
   isLoading = false;
+  demo1TabIndex = 0
 
   constructor(private authService: AutenticacaoService, private apiService: ApiService,
     private router: Router, private toast: NgToastService) { }
@@ -24,18 +25,32 @@ export class HomeComponent implements OnInit {
   }
 
   registerUser(user: any){
-    this.apiService.registerUser(user);
+    this.apiService.registerUser(user).subscribe((res: any) => {
+      console.log(res)
+      this.toast.success({detail:"Success Message",summary:"User registered successfully", duration:5000})
+      setTimeout(() => {
+        const tabCount = 2;
+        this.demo1TabIndex = (this.demo1TabIndex + 1) % tabCount;
+      }, 500);
+    },err =>{
+      console.log(err);
+      this.toast.error({detail:"Registration Failed",summary:"Email already exist!", duration:5000});
+    })
   }
 
   login(){
     this.isLoading = true
+    console.log(this.senha)
     let credentials = {
-      email: this.usuario,
+      username: this.usuario,
       password: this.senha
     }
 
     this.apiService.loginUser(credentials).subscribe((res: any) => {  
-      console.log(res._id)    
+      console.log('token',res)   
+      sessionStorage.setItem("token", res.token) 
+      sessionStorage.setItem("user", res.user.firstname) 
+      sessionStorage.setItem("cargo", res.user.cargo) 
               setTimeout(() => {
                 this.router.navigate(['tela-inicial']);
               }, 2000);

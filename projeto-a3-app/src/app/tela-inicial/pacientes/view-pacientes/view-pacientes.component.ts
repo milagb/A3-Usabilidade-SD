@@ -24,11 +24,24 @@ export class ViewPacientesComponent implements OnInit {
 
   getPacienteDetailById() {       
     this.apiService.getPacienteDetailById(this.pacienteId).subscribe((data : any) => {      
+      data = data.response
       console.log('data', data);
       if (data != null) {
         var resultData = data;
         if (resultData) {
-          this.pacienteDetail = resultData;
+          for (let index = 0; index < resultData.length; index++) {
+            const element = resultData[index];
+            this.pacienteDetail.firstname = element.firstname;
+            this.pacienteDetail.lastname = element.lastname;
+            this.pacienteDetail.email = element.email;
+            this.pacienteDetail.sexo = element.sexo;
+            this.pacienteDetail.nascimento = element.nascimento;
+            this.pacienteDetail.celular = element.celular;
+            this.pacienteDetail.telefone = element.telefone;
+            this.pacienteDetail.cpf = element.cpf;
+            this.pacienteDetail.endereco = element.endereco;
+            this.pacienteDetail.ativo = element.ativo;
+          }
         }
       }
     },

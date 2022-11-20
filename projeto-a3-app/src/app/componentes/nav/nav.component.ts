@@ -13,8 +13,8 @@ export class NavComponent implements OnInit {
 
   Id: any;
   employeeDetail : any= [];
-  cargo = '';
-  nome = '';
+  cargo = sessionStorage.getItem('cargo');
+  nome = sessionStorage.getItem('user');
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -22,7 +22,6 @@ export class NavComponent implements OnInit {
   constructor(private observer: BreakpointObserver, private route: ActivatedRoute, private apiService: ApiService) { 
 
   }
-
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
       if (res.matches) {
@@ -40,25 +39,6 @@ export class NavComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.Id = params['Id']
     });
-    this.getEmployeeDetailById();
-  }
-
-  getEmployeeDetailById() {      
-    console.log('data', this.Id); 
-    this.apiService.getUserDetailById(this.Id).subscribe((data : any) => {      
-      //console.log(data); 
-      if (data != null) {
-        var resultData = data;
-        if (resultData) {
-          this.employeeDetail = resultData;
-          this.cargo = this.employeeDetail.cargo;
-          this.nome = this.employeeDetail.firstname;
-        }
-      }
-    },
-    (error :any)=> {
-      console.log('error'); 
-     }); 
   }
 
 }

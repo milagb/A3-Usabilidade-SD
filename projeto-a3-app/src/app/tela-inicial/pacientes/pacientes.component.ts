@@ -11,7 +11,7 @@ import { DialogAnimationsExampleDialogComponent }  from "src/app/dialog-example/
 })
 export class PacientesComponent implements OnInit {
 
-  displayedColumns: string[] = ['cpf', 'nome', 'sobrenome', 'endereco', 'email', 'fone', 'sexo', 'actions'];
+  displayedColumns: string[] = ['cpf', 'nome', 'sobrenome', 'endereco', 'email', 'fone', 'sexo', 'ativo', 'actions'];
   dataSource: any = [];
 
   constructor(private apiService: ApiService, public dialog: MatDialog, private toast: NgToastService) { }
@@ -41,7 +41,7 @@ export class PacientesComponent implements OnInit {
     this.apiService.getAllPaciente().subscribe((data : any) => {
 
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         if (resultData) {
           this.dataSource = resultData;
           console.log('3', this.dataSource);
