@@ -27,14 +27,14 @@ export class HomeComponent implements OnInit {
   registerUser(user: any){
     this.apiService.registerUser(user).subscribe((res: any) => {
       console.log(res)
-      this.toast.success({detail:"Success Message",summary:"User registered successfully", duration:5000})
+      this.toast.success({detail:"Mensagem de sucesso",summary:"Usuário registrado com sucesso", duration:5000})
       setTimeout(() => {
         const tabCount = 2;
         this.demo1TabIndex = (this.demo1TabIndex + 1) % tabCount;
       }, 500);
     },err =>{
       console.log(err);
-      this.toast.error({detail:"Registration Failed",summary:"Email already exist!", duration:5000});
+      this.toast.error({detail:"Cadastro falhou",summary:"Email já existe!", duration:5000});
     })
   }
 
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     },
     (error :any)=> { 
       console.log(error);
-      this.toast.error({detail:"Login Failed",summary:"Incorrect email or password", duration:5000});
+      this.toast.error({detail:"Falha no login",summary:"Senha ou Email incorretos", duration:5000});
     }); 
   }
 
