@@ -50,14 +50,20 @@
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="fone">
-        <th mat-header-cell *matHeaderCellDef> Telefone </th>
-        <td mat-cell *matCellDef="let element"> {{element.telefone}} </td>
+        <th mat-header-cell *matHeaderCellDef> Celular </th>
+        <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="sexo">
         <th mat-header-cell *matHeaderCellDef> Sexo </th>
         <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="ativo">
+        <th mat-header-cell *matHeaderCellDef> Ativo </th>
+        <td mat-cell *matCellDef="let element"> <mat-checkbox class="mat-chk" checked="{{ element.ativo }}" [disabled]="true"></mat-checkbox> </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
@@ -78,6 +84,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <span class="not-found" *ngIf="dataSource.length == 0" colspan="6">No Pacientes Found</span>
+    <span class="not-found" *ngIf="dataSource.length == 0" colspan="6">Nenhum paciente encontrado</span>
   </div>
 </div>

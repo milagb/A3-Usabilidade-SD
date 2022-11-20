@@ -21,15 +21,24 @@
       <mat-form-field class="width-100">
         <mat-label>Agenda</mat-label>
         <mat-select name="agenda" [(ngModel)]="editConsultaForm.agenda" #agenda="ngModel" required>
-          <mat-option *ngFor="let agenda of agendas" [value]="agenda.value">
-            {{agenda.viewValue}}
-          </mat-option>
+          <mat-option value="Agenda-Jan">Agenda-Jan</mat-option>
+          <mat-option value="Agenda-Fev">Agenda-Fev</mat-option>
+          <mat-option value="Agenda-Mar">Agenda-Mar</mat-option>
+          <mat-option value="Agenda-Abr">Agenda-Abr</mat-option>
+          <mat-option value="Agenda-Mai">Agenda-Mai</mat-option>
+          <mat-option value="Agenda-Jun">Agenda-Jun</mat-option>
+          <mat-option value="Agenda-Jul">Agenda-Jul</mat-option>
+          <mat-option value="Agenda-Ago">Agenda-Ago</mat-option>
+          <mat-option value="Agenda-Set">Agenda-Set</mat-option>
+          <mat-option value="Agenda-Out">Agenda-Out</mat-option>
+          <mat-option value="Agenda-Nov">Agenda-Nov</mat-option>
+          <mat-option value="Agenda-Dez">Agenda-Dez</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="width-50">
         <mat-label>Especialidade</mat-label>
-        <mat-select name="occupation" [(ngModel)]="editConsultaForm.occupation" #occupation="ngModel" (selectionChange)="occupationChange()">
+        <mat-select name="occupation" [(ngModel)]="editConsultaForm.occupation" #occupation="ngModel" (selectionChange)="occupationChange()" required>
           <mat-option value="Cardiologia">Cardiologia</mat-option>
           <mat-option value="Dermatologia">Dermatologia</mat-option>
           <mat-option value="Oftalmologia">Oftalmologia</mat-option>
@@ -72,27 +81,33 @@
       </div>
 
       <mat-form-field class="width-100">
-        <input type="text" matInput placeholder="Paciente" name="paciente" [(ngModel)]="editConsultaForm.paciente" #paciente="ngModel" required minlength="2" />
+        <input type="text" matInput placeholder="Paciente" name="paciente" [(ngModel)]="editConsultaForm.paciente" #paciente="ngModel" required pattern="[a-zA-Z ]*"
+        minlength="2" />
         <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50">
-        <input type="text" matInput placeholder="Celular" name="celular" name="celular" [(ngModel)]="editConsultaForm.celular" #celular="ngModel" required minlength="11" />
+        <input type="text" matInput placeholder="Celular" name="celular" [(ngModel)]="editConsultaForm.celular" #celular="ngModel" required pattern="^[0-9-]*$"
+        minlength="11"
+        maxlength="11" />
         <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
-        <input type="text" matInput placeholder="Telefone" name="telefone" [(ngModel)]="editConsultaForm.telefone" #telefone="ngModel" required />
+        <input type="text" matInput placeholder="Telefone" name="telefone" [(ngModel)]="editConsultaForm.telefone" #telefone="ngModel" required pattern="^[0-9-]*$"
+        minlength="11"
+        maxlength="11" />
         <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50">
-        <input type="text" matInput placeholder="CPF" name="cpf" [(ngModel)]="editConsultaForm.cpf" #cpf="ngModel" required minlength="11" />
+        <input type="text" matInput placeholder="CPF" name="cpf" [(ngModel)]="editConsultaForm.cpf" #cpf="ngModel" required pattern="^[0-9-]*$" minlength="11"
+        maxlength="11" />
         <mat-error>Digite um cpf válido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
-        <input type="text" matInput placeholder="Observações" name="observacoes" [(ngModel)]="editConsultaForm.observacoes" #observacoes="ngModel" ngModel required />
+        <input type="text" matInput placeholder="Observações" name="observacoes" [(ngModel)]="editConsultaForm.observacoes" #observacoes="ngModel" ngModel />
       </mat-form-field>
 
       <section class="example-section">

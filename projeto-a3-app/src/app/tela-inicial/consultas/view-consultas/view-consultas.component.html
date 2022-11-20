@@ -47,7 +47,7 @@
         matInput
         placeholder="Médico"
         name="Medico"
-        value="{{ consultaDetail.medico}}"
+        value="{{ consultaDetail.medico }}"
         [disabled]="true"/>
     </mat-form-field>
 
@@ -123,7 +123,7 @@
     </mat-form-field>
 
     <section class="example-section">
-      <mat-checkbox class="mat-chk" [disabled]="true" [checked]="consultaDetail.retorno">Retorno</mat-checkbox>
+      <mat-checkbox name="retorno" class="mat-chk" [(ngModel)]="consultaDetail.retorno" [disabled]="true">Retorno</mat-checkbox>
     </section>
     </div>
     <br/>

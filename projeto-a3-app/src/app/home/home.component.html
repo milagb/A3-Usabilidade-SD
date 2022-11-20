@@ -1,7 +1,7 @@
 <div class="login-page">
   <mat-card class="mat-elevation-z12">
     <mat-card-title style="text-align:center;">SignIn/SignUp</mat-card-title>
-    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+    <mat-tab-group name="demo2tab" mat-stretch-tabs class="example-stretched-tabs" [(selectedIndex)]="demo1TabIndex">
       <mat-tab label="Sign In">
           <mat-card-content>
             <form (ngSubmit)="login()">
@@ -54,7 +54,7 @@
 
       <mat-tab label="Sign Up">
         <mat-card-content>
-          <form id="formData" #userData="ngForm" (ngSubmit)="registerUser(userData.value)">
+          <form name="userData" #userData="ngForm" (ngSubmit)="registerUser(userData.value); userData.resetForm()">
             <mat-form-field>
               <input
                 matInput

@@ -20,13 +20,20 @@ export class AddMedicosComponent implements OnInit {
 
   AddEmployee(medico: any) {
     this.isSubmitted = true;
+    
+    if (medico.ativo == '') {
+      medico.ativo = false
+    }
+    
     if (medico) {
       this.apiService.saveEmployee(medico).subscribe(async data => {
         this.result = data
 
+        console.log(this.result)
+
         if (data != null) {
-          if (this.result.status == 200) {
-            this.toast.success({ detail: "Success Message", summary: 'Medico registered successfully', duration: 5000 })
+          if (this.result.message == 'medico created successfully!') {
+            this.toast.success({ detail: "Mensagem de sucesso", summary: 'Médico registrado com sucesso', duration: 5000 })
             setTimeout(() => {
               this.router.navigate(['/medicos']);
             }, 800);
@@ -34,7 +41,7 @@ export class AddMedicosComponent implements OnInit {
         }
       },
         async error => {
-          this.toast.error({detail:"Error Message",summary: "Failed to add medico", duration:5000})
+          this.toast.error({detail:"Mensagem de erro",summary: "Falha ao adicionar médico", duration:5000})
           setTimeout(() => {
             //this.router.navigate(['/medicos']);
           }, 500);

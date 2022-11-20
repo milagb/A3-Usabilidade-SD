@@ -88,15 +88,15 @@ export class HomeComponent implements OnInit {
   async getAllEmployee() {
 
     this.apiService.getAllEmployee().subscribe((data: any) => {
+      
       if (data != null) {
-        var resultData = data;
-        if (resultData) {
+        var resultData = data.response;
+        data = data.response
           for (let index = 0; index < data.length; index++) {
             resultData = data[index]
             if (resultData.ativo == true) {
               this.medicos++
             }
-          }
         }
       }
     },
@@ -114,15 +114,14 @@ export class HomeComponent implements OnInit {
 
     this.apiService.getAllPaciente().subscribe((data: any) => {
       if (data != null) {
-        var resultData = data;
-        if (resultData) {
+        var resultData = data.response;
+        data = data.response
           for (let index = 0; index < data.length; index++) {
             resultData = data[index]
             if (resultData.ativo == true) {
               this.pacientes++
             }
           }
-        }
       }
     },
       (error: any) => {
@@ -189,7 +188,9 @@ export class HomeComponent implements OnInit {
       let object = []
 
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
+        
+        const d = this.datePipe.transform(new Date(), "dd/MM/yyyy")
 
         for (let index = 0; index < resultData.length; index++) {
           this.date = resultData[index];
@@ -197,7 +198,7 @@ export class HomeComponent implements OnInit {
 
           object.push(this.date.data);
 
-          if (this.date.retorno == true) {
+          if (d == this.date.data && this.date.retorno == true) {
             this.retornos++
           }
         }

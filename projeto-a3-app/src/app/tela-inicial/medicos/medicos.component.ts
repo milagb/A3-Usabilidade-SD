@@ -18,6 +18,7 @@ export class MedicosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEmployee();
+    console.log('aaain papai', sessionStorage.getItem('userid'))
   }
 
   openDialog(id: any) {
@@ -41,7 +42,7 @@ export class MedicosComponent implements OnInit {
     this.apiService.getAllEmployee().subscribe((data : any) => {
 
       if (data != null) {
-        var resultData = data;
+        var resultData = data.response;
         if (resultData) {
           this.dataSource = resultData;
           console.log('3', this.dataSource);

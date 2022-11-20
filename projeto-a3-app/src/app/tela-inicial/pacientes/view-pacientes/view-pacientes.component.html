@@ -25,7 +25,6 @@
           name="Nome"
           value="{{ pacienteDetail.firstname }}"
           [disabled]="true"/>
-        <mat-error>Digite um nome válido</mat-error>
       </mat-form-field>
   
       <mat-form-field class="width-50 ml-2">
@@ -36,7 +35,6 @@
             name="Sobrenome"
             value="{{ pacienteDetail.lastname }}"
             [disabled]="true"/>
-          <mat-error>Digite um Sobrenome válido</mat-error>
         </mat-form-field>
   
       <mat-form-field class="width-50">
@@ -63,7 +61,6 @@
           name="Celular"
           value="{{ pacienteDetail.celular }}"
           [disabled]="true"/>
-        <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
   
       <mat-form-field class="width-50 ml-2">
@@ -74,7 +71,6 @@
           value="{{ pacienteDetail.telefone }}"
           name="Telefone"
           [disabled]="true"/>
-        <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
   
       <mat-form-field class="width-50">
@@ -85,7 +81,6 @@
           name="CPF"
           value="{{ pacienteDetail.cpf }}"
           [disabled]="true"/>
-        <mat-error>Digite um cpf válido</mat-error>
       </mat-form-field>
   
       <mat-form-field class="width-50 ml-2">
@@ -107,6 +102,11 @@
           value="{{ pacienteDetail.endereco }}"
           [disabled]="true" value="teste"/>
       </mat-form-field>
+
+      <section class="example-section">
+        <mat-checkbox name="ativo" class="mat-chk" [(ngModel)]="pacienteDetail.ativo" [disabled]="true">Ativo
+        </mat-checkbox>
+      </section>
       </div>
       <br/>
       <br/>

@@ -41,7 +41,11 @@
   
       <mat-form-field class="width-50">
           <mat-label>Especialidade</mat-label>
-          <mat-select [(value)]="employeeDetail.occupation" [disabled]="true">
+          <mat-select name="occupation" [(value)]="employeeDetail.occupation" [disabled]="true">
+            <mat-option value="Cardiologia">Cardiologia</mat-option>
+            <mat-option value="Dermatologia">Dermatologia</mat-option>
+            <mat-option value="Oftalmologia">Oftalmologia</mat-option>
+            <mat-option value="Ortopedia e Traumatologia">Ortopedia e Traumatologia</mat-option>
             <mat-option value="Pediatra">Pediatra</mat-option>
           </mat-select>
       </mat-form-field>
@@ -61,8 +65,6 @@
           placeholder="Celular"
           name="Celular"
           value="{{ employeeDetail.celular }}"
-          maxlength="11"
-          pattern="^\d{3}\d{3}\d{4}$"
           [disabled]="true"/>
         <mat-error>Digite um celular válido</mat-error>
       </mat-form-field>
@@ -85,7 +87,6 @@
           placeholder="CRM"
           name="CRM"
           value="{{ employeeDetail.crm }}"
-          minlength="11"
           [disabled]="true"/>
         <mat-error>Digite um crm válido</mat-error>
       </mat-form-field>
@@ -93,7 +94,33 @@
       <mat-form-field class="width-50 ml-2">
         <mat-label>UF</mat-label>
         <mat-select name="UF" [(value)]="employeeDetail.uf"  [disabled]="true">
-          <mat-option value="sp">SP</mat-option>
+          <mat-option value="AC">AC</mat-option>
+          <mat-option value="AL">AL</mat-option>
+          <mat-option value="AP">AP</mat-option>
+          <mat-option value="AM">AM</mat-option>
+          <mat-option value="BA">BA</mat-option>
+          <mat-option value="CE">CE</mat-option>
+          <mat-option value="DF">DF</mat-option>
+          <mat-option value="ES">ES</mat-option>
+          <mat-option value="GO">GO</mat-option>
+          <mat-option value="MA">MA</mat-option>
+          <mat-option value="MT">MT</mat-option>
+          <mat-option value="MS">MS</mat-option>
+          <mat-option value="MG">MG</mat-option>
+          <mat-option value="PA">PA</mat-option>
+          <mat-option value="PB">PB</mat-option>
+          <mat-option value="PR">PR</mat-option>
+          <mat-option value="PE">PE</mat-option>
+          <mat-option value="PI">PI</mat-option>
+          <mat-option value="RJ">RJ</mat-option>
+          <mat-option value="RN">RN</mat-option>
+          <mat-option value="RS">RS</mat-option>
+          <mat-option value="RO">RO</mat-option>
+          <mat-option value="RR">RR</mat-option>
+          <mat-option value="SC">SC</mat-option>
+          <mat-option value="SP">SP</mat-option>
+          <mat-option value="SE">SE</mat-option>
+          <mat-option value="TO">TO</mat-option>
         </mat-select>
     </mat-form-field>
   
@@ -104,12 +131,11 @@
           placeholder="Email"
           name="Email"
           value="{{ employeeDetail.email }}" 
-          pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,3}$"
           [disabled]="true"/>
       </mat-form-field>
   
       <section class="example-section">
-        <mat-checkbox class="mat-chk" checked="{{ employeeDetail.ativo }}" [disabled]="true">Ativo</mat-checkbox>
+        <mat-checkbox name="ativo" class="mat-chk" [(ngModel)]="employeeDetail.ativo" [disabled]="true">Ativo</mat-checkbox>
       </section>
   
       </div>
