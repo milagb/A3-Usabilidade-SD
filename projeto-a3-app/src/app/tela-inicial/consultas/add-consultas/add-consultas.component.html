@@ -94,7 +94,9 @@
       </mat-form-field>
 
       <mat-form-field class="width-50 ml-2">
-        <input type="text" matInput placeholder="Telefone" ngModel name="telefone" #telefone="ngModel" pattern="^[0-9-]*$" required />
+        <input type="text" matInput placeholder="Telefone" ngModel name="telefone" #telefone="ngModel" pattern="^[0-9-]*$" required
+        minlength="10"
+        maxlength="10" />
         <mat-error>Digite um Telefone válido</mat-error>
       </mat-form-field>
 
