@@ -13,3 +13,9 @@ Nathan Vinicius Vital Santos RA: 820126079
 
 Victor Sousa de Carvalho RA: 820266034
 
+
+Vídeo do projeto:
+
+https://drive.google.com/file/d/196f5UkhzHfBlh_IDic-ywFRW2Mcp-5sJ/view
+
+Obs: O youtube removeu o vídeo, por isso deixamos ele no google drive. 
