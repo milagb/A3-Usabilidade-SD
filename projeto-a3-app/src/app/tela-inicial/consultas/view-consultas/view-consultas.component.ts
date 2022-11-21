@@ -37,6 +37,7 @@ export class ViewConsultasComponent implements OnInit {
             this.consultaDetail.occupation = element.occupation;
             this.consultaDetail.horario = element.horario;
             this.consultaDetail.celular = element.celular;
+            this.consultaDetail.paciente = element.paciente;
             this.consultaDetail.telefone = element.telefone;
             this.consultaDetail.cpf = element.cpf;
             this.consultaDetail.observacoes = element.observacoes;
